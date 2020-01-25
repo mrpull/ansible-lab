@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
 
   # create load balancer
   config.vm.define :lb1 do |lb_config|
-      lb_config.vm.box = "bento/ubuntu-16.04"
+      lb_config.vm.box = "bento/ubuntu-14.04"
       lb_config.vm.hostname = "lb1"
       lb_config.vm.network :private_network, ip: "10.0.15.11"
       lb_config.vm.network "forwarded_port", guest: 80, host: 8080
