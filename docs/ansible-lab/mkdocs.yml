@@ -1,0 +1,12 @@
+site_name: Ansible Lab
+theme: flatly
+markdown_extensions:
+    - admonition
+    - toc:
+        permalink: ⌁
+
+pages:
+- Home: index.md
+- Setup: 'setup/setup.md'
+- Lab 1: 'lab-1/lab-1.md'
+- Lab 2: 'lab-2/lab-2.md'
