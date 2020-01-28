@@ -2,3 +2,5 @@
 *.log
 *.swp
 *.lock
+.DS_Store
+docs/ansible-lab/site/*

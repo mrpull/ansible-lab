@@ -5,8 +5,9 @@ markdown_extensions:
     - toc:
         permalink: ⌁
 
-pages:
+nav:
 - Introduction: index.md
 - Setup: 'setup/setup.md'
+- Keys: 'keys/keys.md'
 - Lab 1: 'lab-1/lab-1.md'
 - Lab 2: 'lab-2/lab-2.md'

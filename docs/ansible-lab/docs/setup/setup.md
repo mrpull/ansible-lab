@@ -31,10 +31,59 @@ Use your favorite text editor, less, or more to inspect the `Vagrantfile` and `b
 It it not necesssary to understand the Vagrant files in order to do the Ansible lab.
 
 # Start the Virtual Machines
-From the ansible-lab directory, use Vagrant to start the four virtual machines and connect to the `mgmt` server.
+From the ansible-lab directory, use Vagrant to start the four virtual machines.
 ```bash
 $ vagrant up
+```
+
+The `vagrant up` command will take several minutes (even on a fast internet connection) as it downloads virtual machines, boots them, and configures the virtual environment.
+
+Now is a good time to take a break.
+
+Connect to the `mgmt` server like this:
+```bash
 $ vagrant ssh mgmt
 ```
 
+
+
 # Hello Ansible!
+If all went well, you should be at a shell prompt inside the mgmt virtual machine that looks like `vagrant@mgmt:~$`.
+
+Once ssh'ed into the `mgmt` node. Verify that Ansible has been automatically been installed.
+
+```bash
+$ ansible --version
+```
+
+Since Ansible will be using SSH to connect to our managed nodes, make sure you can SSH to `web1`.
+
+```bash
+$ ssh web1
+```
+
+You should receive a warning similar to the following:
+
+![Screenshot](../img/hostKey.png)
+
+If you know SSH, you'll recognize that the SSH client doesn't recognize the fingerprint of the SSH server.  Since it is the first time connecting to this node it is to be expected.  Answer `yes` to add web1 to the list of known hosts.
+
+The default password for the vagrant user on the lab machines is `vagrant`.
+
+Enter the password and you should be at a `vagrant@web1:~$` prompt inside the `web1` virtual machine.  Use the `exit` command to return to the `mgmt` machine.
+
+
+Now that you can SSH to web1 you are ready for the first Ansible command.  As tratition dictacts, our first command will print `Hello Ansible`. You will be asked for the SSH password after you run the following:
+
+```bash
+$ ansible -a "echo 'Hello Ansible'" web1 --ask-pass
+```
+
+This is an ad hoc Ansible execution that targets the `web1` node and implicitly uses the `command` module to execute `echo 'Hello Ansible`.  `--ask-pass` (which is abreviated `-k`) tells Ansible you want to provide a password interactively.  If it works, you'll see:
+
+![Screenshot](../img/helloAnsible.png)
+
+Manually accepting host keys and typing passwords interactively is no fun.  You'll see in the next session how to make it less painful.
+
+# More resources
+The Ansible documentation has a nice introduction to ad hoc commands [here](https://docs.ansible.com/ansible/2.5/user_guide/intro_adhoc.html).
