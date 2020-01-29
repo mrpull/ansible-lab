@@ -21,16 +21,16 @@ You'll see the following:
 Ansible connected to each node via SSH without requiring manually accepting each node's host key.  It then ran the uptime command on each node to show load averages.
 
 # Key based authentication
-SSH can provide passwordless logins by using a public/private keypair.  The details of key based authentication are outside the scope of this tutorial.  The steps below can be followed to setup basic key based auth.
+SSH can provide password-less logins by using a public/private key pair.  The details of key based authentication are outside the scope of this tutorial, but the steps below can be followed to setup basic key based auth.
 
-## Generate an SSH keypair
-The [ssh-keygen](https://man.openbsd.org/ssh-keygen) command can generate a keypair used for SSH authentication.  Your own computer may already have a keypair, but the lab `mgmt` node needs one created as follows:
+## Generate an SSH key pair
+The [ssh-keygen](https://man.openbsd.org/ssh-keygen) command can generate a key pair used for SSH authentication.  Your own computer may already have a key pair, but the lab `mgmt` node needs one created as follows:
 
 ```bash
 $ ssh-keygen
 ```
 
-Accept the default location for the key.  It isn't best practice to have an empty passphrase, but leave it empty for this lab.  After hitting enter a couple times you should see that a keypair is created followed by an ascii art representation of it like this:
+Accept the default location for the key.  It isn't best practice to have an empty passphrase, but leave it empty for this lab.  After hitting enter a couple times you should see that a key pair is created followed by an ascii art representation of it like this:
 
 ![Screenshot](../img/keyGen.png)
 
@@ -46,11 +46,11 @@ Enter the vagrant user's password (`vagrant`) when prompted.
 
 When the key copy is complete it will suggest you try logging in again as follows: `ssh 'vagrant@web1'`.  This should connect you to a `vagrant@web1:~$` prompt without having to type in a password.  Use the `exit` command to return to the `mgmt` node.
 
-[This](https://www.ssh.com/ssh/copy-id) is a nice overview of ssh-copy-id and passwordless logins.
+[This](https://www.ssh.com/ssh/copy-id) is a nice overview of ssh-copy-id and password-less logins.
 
 ## Hello Ansible (Again!)
 
-Now that passwordless login is setup on `web1` it is time to try another "Hello World":
+Now that password-less login is setup on `web1` it is time to try another "Hello World":
 
 ```bash
 $ ansible -a "echo 'Hello Ansible (Again)'" web1

@@ -28,7 +28,7 @@ $ cd ansible-lab
 ```
 Use your favorite text editor, less, or more to inspect the `Vagrantfile` and `bootstrap-mgmt.sh` files.  The Vagrantfile (initially) defines four virtual machines.  `web1` and `web2` will be configured as web servers.  `lb1` will be configured as an [HAProxy](http://www.haproxy.org/) software load balancer to distribute traffic to each webserver.  A [control node](https://docs.ansible.com/ansible/latest/user_guide/basic_concepts.html#control-node) called `mgmt` will be configured (or bootstrapped) by Vagrant to automatically preinstall Ansible, copy lab examples, and populate its /etc/hosts file.
 
-It it not necesssary to understand the Vagrant files in order to do the Ansible lab.
+It it not necessary to understand the Vagrant files in order to do the Ansible lab.
 
 # Start the Virtual Machines
 From the ansible-lab directory, use Vagrant to start the four virtual machines.
@@ -73,13 +73,13 @@ The default password for the vagrant user on the lab machines is `vagrant`.
 Enter the password and you should be at a `vagrant@web1:~$` prompt inside the `web1` virtual machine.  Use the `exit` command to return to the `mgmt` machine.
 
 
-Now that you can SSH to web1 you are ready for the first Ansible command.  As tratition dictacts, our first command will print `Hello Ansible`. You will be asked for the SSH password after you run the following:
+Now that you can SSH to web1 you are ready for the first Ansible command.  As tradition dictates, our first command will print `Hello Ansible`. You will be asked for the SSH password after you run the following:
 
 ```bash
 $ ansible -a "echo 'Hello Ansible'" web1 --ask-pass
 ```
 
-This is an ad hoc Ansible execution that targets the `web1` node and implicitly uses the `command` module to execute `echo 'Hello Ansible`.  `--ask-pass` (which is abreviated `-k`) tells Ansible you want to provide a password interactively.  If it works, you'll see:
+This is an ad hoc Ansible execution that targets the `web1` node and implicitly uses the `command` module to execute `echo 'Hello Ansible`.  `--ask-pass` (which is abbreviated `-k`) tells Ansible you want to provide a password interactively.  If it works, you'll see:
 
 ![Screenshot](../img/helloAnsible.png)
 

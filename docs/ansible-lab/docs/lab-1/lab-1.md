@@ -56,7 +56,7 @@ Run the ping module as follows:
 $ ansible -m ping all
 ```
 
-Among the output you should see a `"ping": "pong"` response for each node in the inventory.  This tool is not like the network tool of the same name.  It does not check ICMP connectivity, but rather verifies ability to login and a usable environment is availble on the managed node.
+Among the output you should see a `"ping": "pong"` response for each node in the inventory.  This tool is not like the network tool of the same name.  It does not check ICMP connectivity, but rather verifies ability to login and a usable environment is available on the managed node.
 
 Experiment with the following ping commands to see if you can guess how the groups in `inventory.ini` are used:
 

@@ -1,12 +1,12 @@
 # What Is Ansible?
 
-Ansible Engine is a tool used for automation, provisioning, app deployment, configuration management, and orchestration.  Ansible Engine is open source and is sponsored by Redhat.  It is the core of a bigger suite of tools that includes Ansible Tower and Redhat Automation.
+Ansible Engine is a tool used for automation, provisioning, app deployment, configuration management, and orchestration.  Ansible Engine is open source and is sponsored by Red Hat.  It is the core of a bigger suite of tools that includes Ansible Tower and Red Hat Automation.
 
 More information about Ansible is [here](https://www.ansible.com/overview/it-automation).
 
 # No Agents
 
-An Ansible `Control Node`connects via SSH, WinRM, and HTTPS protocols to `Managed Nodes` or `hosts`.  Unlike Saltstack, Puppet, etc., no agent is required.  Ansible is not installed on managed nodes.  Firewall changes are often not required since it uses the same protocols used for interactive maintenance.
+An Ansible `Control Node`connects via SSH, WinRM, and HTTPS protocols to `Managed Nodes` or `hosts`.  Unlike SaltStack, Puppet, etc., no agent is required.  Ansible is not installed on managed nodes.  Firewall changes are often not required since it uses the same protocols used for interactive maintenance.
 
 # Inventories
 
@@ -20,7 +20,7 @@ Ansible can be used to run one-off commands on one or many managed nodes (e.g. c
 
 # Modules
 
-Ansible Modules are pieces of code (usually written in Python or Powershell) used to accomplish a particular funtion like configure a user account, install a package, or verify a config file is in compliance. Hundreds of modules are included with Ansible.  Modules are also fairly easily written to add functionality to Ansible.
+Ansible Modules are pieces of code (usually written in Python or PowerShell) used to accomplish a particular function like configure a user account, install a package, or verify a config file is in compliance. Hundreds of modules are included with Ansible.  Modules are also fairly easily written to add functionality to Ansible.
 
 The directory of standard modules is [here](https://docs.ansible.com/ansible/latest/modules/modules_by_category.html#modules-by-category).
 
