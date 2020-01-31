@@ -36,7 +36,7 @@ defaults
 
 backend app
     {% for host in groups['lb'] %}
-       listen episode46 {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:80
+       listen ansible-lab {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:80
     {% endfor %}
     balance     roundrobin
     {% for host in groups['web'] %}

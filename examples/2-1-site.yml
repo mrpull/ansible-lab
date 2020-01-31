@@ -56,7 +56,7 @@
 
   - name: install haproxy and socat
     apt:
-      pkg: "{{ item }}"
+      name: "{{ item }}"
       state: present
     with_items:
     - haproxy
@@ -64,7 +64,7 @@
 
   - name: enable haproxy
     lineinfile:
-      dest: /etc/default/haproxy
+      path: /etc/default/haproxy
       regexp: "^ENABLED"
       line: "ENABLED=1"
     notify: restart haproxy

@@ -1,5 +1,5 @@
 # authorized_keys
-In a [previous section](../keys/keys.md#ssh-copy-id) you manually copied an SSH key to a managed node.  This does not scale well to hundreds of nodes.  The section gives an early peek at using an Ansible playbook that uses the [authorized_keys](https://docs.ansible.com/ansible/latest/modules/authorized_key_module.html) module to distribute your ssh key to all of the lab nodes.
+In a [previous section](../keys/keys.md#ssh-copy-id) you manually copied an SSH key to a managed node.  This does not scale well to hundreds of nodes.  The following section gives an early peek at using an Ansible playbook that uses the [authorized_keys](https://docs.ansible.com/ansible/latest/modules/authorized_key_module.html) module to distribute your ssh key to all of the lab nodes.
 
 ## Authorized Keys Playbook
 Ansible playbooks are [YAML](https://en.wikipedia.org/wiki/YAML) files that contain Ansible configuration and instructions.  YAML is relatively easy to read, but sometimes difficult to write.  YAML isn't covered in depth here, but the examples should be easy to reproduce.
@@ -101,9 +101,15 @@ You may have noticed the commands above had a new argument `--become`.  Without 
 
 ## More Better: Playbooks
 
-Ansible playbooks are a collection of tasks to be executed in sequence.  Playbooks are written [YAML](https://en.wikipedia.org/wiki/YAML) and are easy to read.  At the start of each play you'll usually see which hosts (or groups) to target, whether or not privilege escalation is needed (become), and whether or not to collect information about the node (gather_facts).
+Ansible playbooks are a collection of tasks to be executed in sequence.  Playbooks are written [YAML](https://en.wikipedia.org/wiki/YAML) and are easy to read.  At the start of each play you'll usually see:
 
-A playbook to install and configure NTP is below:
+* `hosts:` - which hosts (or groups) to target
+* `become:` - whether or not privilege escalation is needed
+* `gather_facts` - whether or not to collect information about the managed node
+
+Playbooks include a list of tasks.  Tasks should start with a descriptive name followed by the module and its arguments.
+
+A playbook consisting of three tasks (and a handler) to install and configure NTP is below:
 
 ```yaml
 ---
@@ -158,3 +164,79 @@ ansible-playbook 1-2-ntp-install.yml
 
 On subsequent executions, it should not change anything or restart the service.  This is an example of an `idempotent` playbook.  This is a more desirable pattern than ad hoc commands.
 
+Review the following playbook and guess what it will do:
+
+```yaml
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+
+  - name: remove ntp
+    apt:
+      name: ntp
+      state: absent
+```
+If you need a hint, review the docs for the [apt](https://docs.ansible.com/ansible/latest/modules/apt_module.html) module.
+
+Now run the playbook above like this:
+
+```bash
+$ ansible-playbook 1-3-ntp-remove.yml
+```
+
+# Variables and Templates
+
+Using playbooks like we have so far makes it easy to perform tasks quickly and repeatably.  Ansible is even more powerful when you begin to use variables and templates.
+
+With variables and templates, you can use the same playbooks and roles across different environments and substitute specific values on per-environment basis.  For example, you could configure DNS settings in /etc/resolv.conf for servers in production, disaster recovery, and development datacenters with the same playbook, but substitute the appropriate IP addresses of the DNS servers for each location.
+
+## NTP Config Template Example
+
+A good way to get familiar with variables and templates is to walk through an example.  In this (somewhat contrived) example, we have decided that the NTP service on the web servers need to use a specific time server while the load balancer must use a different one.  This might be the case when the webservers are in a firewalled segment that doesn't permit access to the internet.
+
+Our example template file for the NTP playbook is in `templates/ntp.conf.j2`.  The `.j2` extension indicates it is a [Jinja 2](https://en.wikipedia.org/wiki/Jinja_(template_engine)) template.  Jinja is a template engine used by Ansible (and other Python applications).  It is a whole language on its own.  Today we'll only use it for variable substitution.  It may be helpful to think of Ansible templating is like using the mail merge function of an office suite.  It takes values from a database and merges them into a templated file.
+
+Only one variable is in `templates/ntp.conf.j2`:
+
+```bash
+# ...lines above
+filegen clockstats file clockstats type day enable
+server {{ ntp_server }}
+restrict -4 default kod notrap nomodify nopeer noquery
+# ... lines below
+```
+
+This template contains typical `ntp.conf` values and looks very similar to the file that was used by the `copy` module in the earlier playbook except the line `server {{ ntp_server }}`.  The template module will replace the section with double curly braces (or mustaches) with a variable.
+
+Variables can be defined in several different locations including the inventory, playbooks, or "vars" files.  In our example, we will use the `group_vars` directory to define a different value of the variable to be used for each inventory group.  The `group_vars` directory contains a file for each group (and optionally a file for the special `all` group).  Ansible determines the values for variables in templates before deploying the rendered files to the servers.
+
+The group_vars directory looks like this:
+```bash
+group_vars
+├── lb
+└── web
+```
+
+The lb and web files each contains a key/value pair for the `{{ ntp_server }}` variable.  group_vars files can contain multiple variables.  Variable can also be YAML dictionaries.  See the [Using Variables](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html) documentation for many more examples.
+
+
+Now, run the updated playbook to use the template:
+
+```bash
+$ ansible-playbook 1-4-ntp-template.yml
+```
+
+Try the following ad hoc ansible command to use the `command` module and `grep` to inspect the server line /etc/ntp.conf on each server in the inventory:
+
+```bash
+ansible -a "grep server /etc/ntp.conf" all
+```
+
+We used the same playbook and the template module to configure environment specific config files.
+
+![Screenshot](../img/ntpGrep.png)
+
+The [next lab](../lab-2/lab-2.md) covers using playbooks to configure a semi-realist scenario of multiple applications on multiple servers.

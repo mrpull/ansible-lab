@@ -4,11 +4,11 @@ The intent of this lab is to provide a gentle introduction to Ansible and provid
 # Lab Software (Prerequisites)
 The lab environment consists of Ubuntu virtual machines powered by VirtualBox and managed by Vagrant.  Neither VirtualBox or Vagrant are covered in depth.  They are used as part of the lab, but full understanding isn't required.
 
-Each of the following should be installed prior to the lab:
+Each of the following should be installed prior to the lab.  Setup of prerequisites will take around 20 minutes:
 
-* Git and SSH are used for downloading example code and connecting to virtual machines.  Many Linux distributions and macOS provide these tools out of the box.  The [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and [Git for Windows](https://gitforwindows.org/) are both good options to use Git and SSH in Windows.
+* Git and SSH are used for downloading example code and connecting to virtual machines.  Many Linux distributions and macOS provide these tools out of the box.  The [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and [Git for Windows](https://gitforwindows.org/) are both good options to use Git and SSH in Windows.  Git for Windows is recommended.
 
-* [VirtualBox](https://www.virtualbox.org/wiki/Downloads) is an open source virtualization product.  It runs on Windows, Linux, and Mac and supports most common guest operating systems.
+* [VirtualBox](https://www.virtualbox.org/wiki/Downloads) is an open source virtualization product.  It runs on Windows, Linux, and Mac and supports most common guest operating systems.  **You may need to run the installer as administrator to avoid an installation error.**
 
 * [Vagrant](https://www.vagrantup.com/downloads.html) is a tool for building and managing virtual machine environments.  A `Vagrantfile` provides a configuration that builds and provisions the multiple VM's in this lab.
 
@@ -68,7 +68,7 @@ You should receive a warning similar to the following:
 
 If you know SSH, you'll recognize that the SSH client doesn't recognize the fingerprint of the SSH server.  Since it is the first time connecting to this node it is to be expected.  Answer `yes` to add web1 to the list of known hosts.
 
-The default password for the vagrant user on the lab machines is `vagrant`.
+**The default password for the vagrant user on the lab machines is `vagrant`.**
 
 Enter the password and you should be at a `vagrant@web1:~$` prompt inside the `web1` virtual machine.  Use the `exit` command to return to the `mgmt` machine.
 
