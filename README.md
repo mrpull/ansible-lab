@@ -1,4 +1,5 @@
-## Episode #45 - Learning Ansible with Vagrant (Part 2/4)
+# Ansible Lab
+Ansible introduction using Vagrant, Virtualbox, and Ansible.
 
-Code for [Episode #45 - Learning Ansible with Vagrant (Part 2/4)](https://sysadmincasts.com/episodes/45-learning-ansible-with-vagrant-part-2-4).
+See the [Lab Guide](https://pages.ghe.coxautoinc.com/Jake-Pollmann/ansible-lab/) for more.
 
