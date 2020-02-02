@@ -111,3 +111,9 @@ After the new servers are booted, you'll need to update the inventory to include
 * Experiment with using templates to deploy changes to the contents of the web page.
 
 * Try ad hoc commands to stop the service on one or two nodes.  What happens when you refresh the web page?
+
+* What does `ansible -a "cat /etc/haproxy/haproxy.cfg" lb1` do?
+
+
+[Lab 3](../lab-3/lab-3.md) will discuss breaking down larger playbooks into more modular roles.
+
