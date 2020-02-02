@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Lab 2 - Ansible Lab</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../..">Ansible Lab</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../..">Introduction</a>
+                            </li>
+                            <li >
+                                <a href="../../setup/setup/">Setup</a>
+                            </li>
+                            <li >
+                                <a href="../../keys/keys/">Keys</a>
+                            </li>
+                            <li >
+                                <a href="../../lab-1/lab-1/">Lab 1</a>
+                            </li>
+                            <li class="active">
+                                <a href="./">Lab 2</a>
+                            </li>
+                            <li >
+                                <a href="../../lab-3/lab-3/">Lab 3</a>
+                            </li>
+                            <li >
+                                <a href="../../lab-4/lab-4/">Lab 4</a>
+                            </li>
+                            <li >
+                                <a href="../../more/more/">More</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../../lab-1/lab-1/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../../lab-3/lab-3/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#load-balancer-and-2-or-more-web-servers">Load Balancer and 2 (or more) Web Servers</a></li>
+        <li class="main "><a href="#playbook-with-multiple-plays">Playbook with multiple plays</a></li>
+            <li><a href="#common">Common</a></li>
+            <li><a href="#web">Web</a></li>
+            <li><a href="#load-balancer">Load balancer</a></li>
+        <li class="main "><a href="#play-time">Play Time...</a></li>
+        <li class="main "><a href="#experiment">Experiment</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="load-balancer-and-2-or-more-web-servers">Load Balancer and 2 (or more) Web Servers<a class="headerlink" href="#load-balancer-and-2-or-more-web-servers" title="Permanent link">⌁</a></h1>
+<p>The end result of this lab will be an automatically deployed and configured HAProxy load balancer with a group of web servers.
+<a href="../../img/labDrawing.png"><img alt="" src="../../img/labDrawingSmall.png" /></a></p>
+<h1 id="playbook-with-multiple-plays">Playbook with multiple plays<a class="headerlink" href="#playbook-with-multiple-plays" title="Permanent link">⌁</a></h1>
+<p>Review the contents of <code>2-1-site.yml</code>.  It contains multiple plays that use modules that have already been covered and also introduces a couple new ones.</p>
+<h2 id="common">Common<a class="headerlink" href="#common" title="Permanent link">⌁</a></h2>
+<p>The first play targets all nodes in the inventory.  It uses the <code>apt</code> module to ensure the git package is installed on all nodes.  These settings are common to all managed nodes.</p>
+<h2 id="web">Web<a class="headerlink" href="#web" title="Permanent link">⌁</a></h2>
+<p>The next play targets only members of the web group in the inventory.  It uses the <code>apt</code> module to install the NGINX webserver, <code>template</code> to create the NGINX config file and page content.  If needed, it will use a handler to restart NGINX.</p>
+<h2 id="load-balancer">Load balancer<a class="headerlink" href="#load-balancer" title="Permanent link">⌁</a></h2>
+<p>The final play targets only the load balancer group.  This play employs some new tricks:</p>
+<ul>
+<li>The <a href="https://docs.ansible.com/ansible/latest/modules/apt_module.html">apt</a> module now uses <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#with-items">with_items</a>.  You can think of <code>with_items</code> as looping over the list and running the <code>apt</code> module for each item in the list.  It uses the variable syntax to substitute each package name.</li>
+</ul>
+<pre><code class="yaml">  - name: install haproxy and socat
+    apt:
+      name: &quot;{{ item }}&quot;
+      state: present
+    with_items:
+    - haproxy
+    - socat
+</code></pre>
+
+<ul>
+<li>The next play uses the <a href="https://docs.ansible.com/ansible/latest/modules/lineinfile_module.html">lineinfile</a>.  <code>lineinfile</code> ensures a particular line is in a file, or replace an existing line using a regular expression.  This is primarily useful when you want to change a single line in a file only.  The <code>template</code> module is preferable in cases where control of the contents of the entire file is important.  The logic is "find a line that starts with ENABLED" and replace it with "ENABLED=1".
+*</li>
+</ul>
+<pre><code class="yaml">  - name: enable haproxy
+    lineinfile:
+      dest: /etc/default/haproxy
+      regexp: &quot;^ENABLED&quot;
+      line: &quot;ENABLED=1&quot;
+    notify: restart haproxy
+</code></pre>
+
+<p>The templates directory contains .j2 (Jinja2) files that are merged before playbook execution.  The templates are mostly stock configuration files plus ansible variables and a little bit of Ansible magic.</p>
+<p>The <code>template/default-site.j2</code> template is used to create the NGINX site configuration.  It begins by inserting a comment that the file is managed by Ansible with the <code>{{ ansible_managed }}</code> variable.  You can customize this message to warn sysadmins that changes made by hand will be overwritten by the next Ansible run.</p>
+<p>The NGINX configuration should include the server's hostname.  Rather than hardcoding the hostname in the template, the Ansible Fact <code>{{ ansible_hostname }}</code> dynamically inserts the hostname on a per-host basis.  This is a good pattern for making playbooks reusable.</p>
+<pre><code class="bash"># {{ ansible_managed }}
+server {
+
+        listen 80;
+        server_name {{ ansible_hostname }};
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+
+        error_page 404 /404.html;
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+                root /usr/share/nginx/html;
+        }
+
+}
+</code></pre>
+
+<p>The other templates have employ similar methods of variable and fact substitution. A more advanced use of templating occurs in the <code>haproxy.cfg.j2</code> template.  The <code>backend app</code> section of the configuration uses Jinja loops and Ansible facts to render the config.  This will later allow adding new hosts to the <code>web</code> group with no need to change the template.</p>
+<p><strong>Jinja loops are an advanced template topic for future learning.  See below for an example of the template and rendered config file side by side.</strong></p>
+<p><a href="../../img/haproxyConfig.png"><img alt="" src="../../img/haproxyConfig.png" /></a></p>
+<h1 id="play-time">Play Time...<a class="headerlink" href="#play-time" title="Permanent link">⌁</a></h1>
+<p>Run the playbook to configure the environment.</p>
+<pre><code class="bash">$ ansible-playbook 2-1-site.yml
+</code></pre>
+
+<p>If all goes well, your play recap will indicate success.</p>
+<p>If you run the playbook a second time, the recap should indicate no changes.</p>
+<p>Behind the scenes, Vagrant has forwarded a port to the HAProxy virtual machine.  Test it out by browsing to <code>http://localhost:8080</code>.  Refresh the browser several times to see if traffic is being served from both servers.</p>
+<p><img alt="Screenshot" src="../../img/browser.png" /></p>
+<h1 id="experiment">Experiment<a class="headerlink" href="#experiment" title="Permanent link">⌁</a></h1>
+<p>Now try to increase the number of web servers.  Update the Vagrantfile to 6 servers (or 3 or 4 if your computer is low on memory, but not more than 9). Change the 2 in <code>(1..2).each do |i|</code> to 6 like the example.  The Vagrantfile syntax isn't related to Ansible and doesn't need to be understood.</p>
+<p><img alt="Screenshot" src="../../img/vagrantChange.png" /></p>
+<p>Launch the new VM's:</p>
+<pre><code class="bash">$ vagrant up
+</code></pre>
+
+<p>After the new servers are booted, you'll need to update the inventory to include them (in this case remove the #'s from each relevant line in inventory.ini).  Also you'll need to make sure password-less logins are working.  The <a href="../../keys/keys/">Keys</a> lab can guide you if you need help.</p>
+<ul>
+<li>
+<p>Run the playbook again.  Refresh the browser.  Does it change?</p>
+</li>
+<li>
+<p>Experiment with using templates to deploy changes to the contents of the web page.</p>
+</li>
+<li>
+<p>Try ad hoc commands to stop the service on one or two nodes.  What happens when you refresh the web page?</p>
+</li>
+<li>
+<p>What does <code>ansible -a "cat /etc/haproxy/haproxy.cfg" lb1</code> do?</p>
+</li>
+</ul>
+<p><a href="../../lab-3/lab-3/">Lab 3</a> will discuss breaking down larger playbooks into more modular roles.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

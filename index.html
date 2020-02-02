@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>Ansible Lab</title>
+        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href=".">Ansible Lab</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <a href=".">Introduction</a>
+                            </li>
+                            <li >
+                                <a href="setup/setup/">Setup</a>
+                            </li>
+                            <li >
+                                <a href="keys/keys/">Keys</a>
+                            </li>
+                            <li >
+                                <a href="lab-1/lab-1/">Lab 1</a>
+                            </li>
+                            <li >
+                                <a href="lab-2/lab-2/">Lab 2</a>
+                            </li>
+                            <li >
+                                <a href="lab-3/lab-3/">Lab 3</a>
+                            </li>
+                            <li >
+                                <a href="lab-4/lab-4/">Lab 4</a>
+                            </li>
+                            <li >
+                                <a href="more/more/">More</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="disabled">
+                                <a rel="next" >
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="setup/setup/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#what-is-ansible">What Is Ansible?</a></li>
+        <li class="main "><a href="#no-agents">No Agents</a></li>
+        <li class="main "><a href="#inventories">Inventories</a></li>
+        <li class="main "><a href="#ad-hoc-and-parallel-task-execution">Ad Hoc (and Parallel) Task Execution</a></li>
+        <li class="main "><a href="#modules">Modules</a></li>
+        <li class="main "><a href="#tasks">Tasks</a></li>
+        <li class="main "><a href="#playbooks">Playbooks</a></li>
+        <li class="main "><a href="#roles">Roles</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="what-is-ansible">What Is Ansible?<a class="headerlink" href="#what-is-ansible" title="Permanent link">⌁</a></h1>
+<p>Ansible Engine is a tool used for automation, provisioning, app deployment, configuration management, and orchestration.  Ansible Engine is open source and is sponsored by Red Hat.  It is the core of a bigger suite of tools that includes Ansible Tower and Red Hat Automation.</p>
+<p>More information about Ansible is <a href="https://www.ansible.com/overview/it-automation">here</a>.</p>
+<h1 id="no-agents">No Agents<a class="headerlink" href="#no-agents" title="Permanent link">⌁</a></h1>
+<p>An Ansible <code>Control Node</code>connects via SSH, WinRM, and HTTPS protocols to <code>Managed Nodes</code> or <code>hosts</code>.  Unlike SaltStack, Puppet, etc., no agent is required.  Ansible is not installed on managed nodes.  Firewall changes are often not required since it uses the same protocols used for interactive maintenance.</p>
+<h1 id="inventories">Inventories<a class="headerlink" href="#inventories" title="Permanent link">⌁</a></h1>
+<p>Ansible inventories are (by default) an .INI-style file that contains the names of managed nodes and allows grouping into classes such as <code>webservers</code>, <code>database</code> or environments like <code>production</code> and <code>qa</code> or by location such as <code>us-west1</code> or <code>us-east1</code>.  There is also a special group <code>all</code>.</p>
+<p>Inventories can also pull in hosts from AWS, VMware, or scripts.</p>
+<h1 id="ad-hoc-and-parallel-task-execution">Ad Hoc (and Parallel) Task Execution<a class="headerlink" href="#ad-hoc-and-parallel-task-execution" title="Permanent link">⌁</a></h1>
+<p>Ansible can be used to run one-off commands on one or many managed nodes (e.g. check free disk space with <code>df -h</code>) or to execute one of Ansible's hundreds of built in modules (e.g. <code>ansible -m user -a "user=joedoe state=absent"</code>)</p>
+<h1 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">⌁</a></h1>
+<p>Ansible Modules are pieces of code (usually written in Python or PowerShell) used to accomplish a particular function like configure a user account, install a package, or verify a config file is in compliance. Hundreds of modules are included with Ansible.  Modules are also fairly easily written to add functionality to Ansible.</p>
+<p>The directory of standard modules is <a href="https://docs.ansible.com/ansible/latest/modules/modules_by_category.html#modules-by-category">here</a>.</p>
+<h1 id="tasks">Tasks<a class="headerlink" href="#tasks" title="Permanent link">⌁</a></h1>
+<p>Tasks are a unit of work.  A task may be a single one off command or many tasks can be combined into a sequence of work to configure a system or automate a deployment.</p>
+<h1 id="playbooks">Playbooks<a class="headerlink" href="#playbooks" title="Permanent link">⌁</a></h1>
+<p>Playbooks are Ansible’s configuration, deployment, and orchestration language. They can describe a policy you want your remote systems to enforce, or a set of steps in a general IT process.</p>
+<h1 id="roles">Roles<a class="headerlink" href="#roles" title="Permanent link">⌁</a></h1>
+<p>Roles are a way to organize and compartmentalize related Ansible content including tasks, templates, and files.  They are used to make reusable components or building blocks.  A "common" role could be a collection of settings used by all servers and a more specific role could be used to configure a custom application.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.0.4
+Build Date UTC : 2020-02-02 04:33:25
+-->

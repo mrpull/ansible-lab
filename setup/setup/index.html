@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Setup - Ansible Lab</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../..">Ansible Lab</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../..">Introduction</a>
+                            </li>
+                            <li class="active">
+                                <a href="./">Setup</a>
+                            </li>
+                            <li >
+                                <a href="../../keys/keys/">Keys</a>
+                            </li>
+                            <li >
+                                <a href="../../lab-1/lab-1/">Lab 1</a>
+                            </li>
+                            <li >
+                                <a href="../../lab-2/lab-2/">Lab 2</a>
+                            </li>
+                            <li >
+                                <a href="../../lab-3/lab-3/">Lab 3</a>
+                            </li>
+                            <li >
+                                <a href="../../lab-4/lab-4/">Lab 4</a>
+                            </li>
+                            <li >
+                                <a href="../../more/more/">More</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../..">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../../keys/keys/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#overview">Overview</a></li>
+        <li class="main "><a href="#lab-software-prerequisites">Lab Software (Prerequisites)</a></li>
+        <li class="main "><a href="#getting-started">Getting Started:</a></li>
+        <li class="main "><a href="#start-the-virtual-machines">Start the Virtual Machines</a></li>
+        <li class="main "><a href="#hello-ansible">Hello Ansible!</a></li>
+        <li class="main "><a href="#more-resources">More resources</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">⌁</a></h1>
+<p>The intent of this lab is to provide a gentle introduction to Ansible and provide an environment for further learning and experimentation.  Not all Ansible features are covered, but basics such as ad hoc command execution, playbooks, and templates are introduced.</p>
+<h1 id="lab-software-prerequisites">Lab Software (Prerequisites)<a class="headerlink" href="#lab-software-prerequisites" title="Permanent link">⌁</a></h1>
+<p>The lab environment consists of Ubuntu virtual machines powered by VirtualBox and managed by Vagrant.  Neither VirtualBox or Vagrant are covered in depth.  They are used as part of the lab, but full understanding isn't required.</p>
+<p>Each of the following should be installed prior to the lab.  Setup of prerequisites will take around 20 minutes:</p>
+<ul>
+<li>
+<p>Git and SSH are used for downloading example code and connecting to virtual machines.  Many Linux distributions and macOS provide these tools out of the box.  The <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Windows Subsystem for Linux</a> and <a href="https://gitforwindows.org/">Git for Windows</a> are both good options to use Git and SSH in Windows.  Git for Windows is recommended.</p>
+</li>
+<li>
+<p><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a> is an open source virtualization product.  It runs on Windows, Linux, and Mac and supports most common guest operating systems.  <strong>You may need to run the installer as administrator to avoid an installation error.</strong></p>
+</li>
+<li>
+<p><a href="https://www.vagrantup.com/downloads.html">Vagrant</a> is a tool for building and managing virtual machine environments.  A <code>Vagrantfile</code> provides a configuration that builds and provisions the multiple VM's in this lab.</p>
+<ul>
+<li>Understanding of Vagrant isn't necessary, but being familiar with a few basic commands is helpful:<ul>
+<li><code>vagrant up</code>: starts and provisions the Vagrant environment</li>
+<li><code>vagrant ssh &lt;hostname&gt;</code>: connect to virtual machine with SSH</li>
+<li><code>vagrant halt</code>: stops virtual machine(s)</li>
+<li><code>vagrant destroy</code>: terminate and destroy virtual machines</li>
+<li><code>varant help</code>: get Vagrant help</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="getting-started">Getting Started:<a class="headerlink" href="#getting-started" title="Permanent link">⌁</a></h1>
+<p>Open shell and change to an appropriate directory.  Clone the git repository and cd into it:</p>
+<pre><code class="bash">$ cd ~/Downloads
+$ git clone &lt;PLACEHOLDER&gt;
+$ cd ansible-lab
+</code></pre>
+
+<p>Use your favorite text editor, less, or more to inspect the <code>Vagrantfile</code> and <code>bootstrap-mgmt.sh</code> files.  The Vagrantfile (initially) defines four virtual machines.  <code>web1</code> and <code>web2</code> will be configured as web servers.  <code>lb1</code> will be configured as an <a href="http://www.haproxy.org/">HAProxy</a> software load balancer to distribute traffic to each webserver.  A <a href="https://docs.ansible.com/ansible/latest/user_guide/basic_concepts.html#control-node">control node</a> called <code>mgmt</code> will be configured (or bootstrapped) by Vagrant to automatically preinstall Ansible, copy lab examples, and populate its /etc/hosts file.</p>
+<p>It it not necessary to understand the Vagrant files in order to do the Ansible lab.</p>
+<h1 id="start-the-virtual-machines">Start the Virtual Machines<a class="headerlink" href="#start-the-virtual-machines" title="Permanent link">⌁</a></h1>
+<p>From the ansible-lab directory, use Vagrant to start the four virtual machines.</p>
+<pre><code class="bash">$ vagrant up
+</code></pre>
+
+<p>The <code>vagrant up</code> command will take several minutes (even on a fast internet connection) as it downloads virtual machines, boots them, and configures the virtual environment.</p>
+<p>Now is a good time to take a break.</p>
+<p>Connect to the <code>mgmt</code> server like this:</p>
+<pre><code class="bash">$ vagrant ssh mgmt
+</code></pre>
+
+<h1 id="hello-ansible">Hello Ansible!<a class="headerlink" href="#hello-ansible" title="Permanent link">⌁</a></h1>
+<p>If all went well, you should be at a shell prompt inside the mgmt virtual machine that looks like <code>vagrant@mgmt:~$</code>.</p>
+<p>Once ssh'ed into the <code>mgmt</code> node. Verify that Ansible has been automatically been installed.</p>
+<pre><code class="bash">$ ansible --version
+</code></pre>
+
+<p>Since Ansible will be using SSH to connect to our managed nodes, make sure you can SSH to <code>web1</code>.</p>
+<pre><code class="bash">$ ssh web1
+</code></pre>
+
+<p>You should receive a warning similar to the following:</p>
+<p><img alt="Screenshot" src="../../img/hostKey.png" /></p>
+<p>If you know SSH, you'll recognize that the SSH client doesn't recognize the fingerprint of the SSH server.  Since it is the first time connecting to this node it is to be expected.  Answer <code>yes</code> to add web1 to the list of known hosts.</p>
+<p><strong>The default password for the vagrant user on the lab machines is <code>vagrant</code>.</strong></p>
+<p>Enter the password and you should be at a <code>vagrant@web1:~$</code> prompt inside the <code>web1</code> virtual machine.  Use the <code>exit</code> command to return to the <code>mgmt</code> machine.</p>
+<p>Now that you can SSH to web1 you are ready for the first Ansible command.  As tradition dictates, our first command will print <code>Hello Ansible</code>. You will be asked for the SSH password after you run the following:</p>
+<pre><code class="bash">$ ansible -a &quot;echo 'Hello Ansible'&quot; web1 --ask-pass
+</code></pre>
+
+<p>This is an ad hoc Ansible execution that targets the <code>web1</code> node and implicitly uses the <code>command</code> module to execute <code>echo 'Hello Ansible</code>.  <code>--ask-pass</code> (which is abbreviated <code>-k</code>) tells Ansible you want to provide a password interactively.  If it works, you'll see:</p>
+<p><img alt="Screenshot" src="../../img/helloAnsible.png" /></p>
+<p>Manually accepting host keys and typing passwords interactively is no fun.  You'll see in the next session how to make it less painful.</p>
+<h1 id="more-resources">More resources<a class="headerlink" href="#more-resources" title="Permanent link">⌁</a></h1>
+<p>The Ansible documentation has a nice introduction to ad hoc commands <a href="https://docs.ansible.com/ansible/2.5/user_guide/intro_adhoc.html">here</a>.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

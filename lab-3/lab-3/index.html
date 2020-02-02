@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Lab 3 - Ansible Lab</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../..">Ansible Lab</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../..">Introduction</a>
+                            </li>
+                            <li >
+                                <a href="../../setup/setup/">Setup</a>
+                            </li>
+                            <li >
+                                <a href="../../keys/keys/">Keys</a>
+                            </li>
+                            <li >
+                                <a href="../../lab-1/lab-1/">Lab 1</a>
+                            </li>
+                            <li >
+                                <a href="../../lab-2/lab-2/">Lab 2</a>
+                            </li>
+                            <li class="active">
+                                <a href="./">Lab 3</a>
+                            </li>
+                            <li >
+                                <a href="../../lab-4/lab-4/">Lab 4</a>
+                            </li>
+                            <li >
+                                <a href="../../more/more/">More</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../../lab-2/lab-2/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../../lab-4/lab-4/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#advanced-role-playing">Advanced Role Playing</a></li>
+        <li class="main "><a href="#the-web-role">The Web Role</a></li>
+        <li class="main "><a href="#reusable-roles">Reusable Roles</a></li>
+        <li class="main "><a href="#just-the-beginning">Just the beginning</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="advanced-role-playing">Advanced Role Playing<a class="headerlink" href="#advanced-role-playing" title="Permanent link">⌁</a></h1>
+<p>Ansible <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html">roles</a> allow you to remove bulky configuration out of the playbook, and into a folder structure. The entire goal of this, is to make things modular, so that you can share and reuse roles, along with not having playbooks that are thousands of lines long.</p>
+<p>A role might be created to manage a particular application on a particular kind of server (e.g. the SMTP service on mail servers) or to deploy a common application or setting to all servers.  Role creation may be assigned to developers on different teams (database vs. application serever).  Separation of responsibilities in roles also allows Ansible playbooks to be maintained independently based on skillsets or knowledge domains.</p>
+<p>Role syntax is similar to playbooks, but the pieces are broken into a directory and file structure.</p>
+<p>Roles expect files to be in certain directories. Roles must include at least one of these directories, however it is perfectly fine to exclude any which are not used. When in use, each directory must contain a main.yml file, which contains the relevant content:</p>
+<ul>
+<li><code>tasks</code> - contains the main list of tasks to be executed by the role.</li>
+<li><code>handlers</code> - contains handlers, which may be used by this role or even anywhere outside this role.</li>
+<li><code>defaults</code> - default variables for the role.</li>
+<li><code>vars</code> - other variables for the role.</li>
+<li><code>files</code> - contains files which can be deployed via this role.</li>
+<li><code>templates</code> - contains templates which can be deployed via this role.</li>
+<li><code>meta</code> - defines some meta data for this role.</li>
+</ul>
+<p><strong>This lab is only a high overview of roles.  More details can be found in the Ansible <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html">documentation</a>.</strong></p>
+<h1 id="the-web-role">The Web Role<a class="headerlink" href="#the-web-role" title="Permanent link">⌁</a></h1>
+<p>Reviewing existing examples is a good way to learn roles.  The <code>web</code> role only contains handlers, tasks, and templates directories.  Tasks and handlers directories contain a <code>main.yml</code> file that is the entry point for each folder.  More complex roles will break down tasks into smaller chunks and use the <code>main.yml</code> file to <code>import_tasks</code> from other files.</p>
+<p>The <code>web</code> role in this lab is structured like this:</p>
+<pre><code class="bash">web
+├── handlers
+│   └── main.yml
+├── tasks
+│   └── main.yml
+└── templates
+    ├── default-site.j2
+    ├── index.html.j2
+    └── nginx.conf.j2
+</code></pre>
+
+<p>The <code>roles/web/tasks/main.yml</code> file contains a YAML formatted list of tasks.  Its contents will look familiar.  It does not include <code>hosts:</code>, <code>become:</code>, <code>gather_facts:</code>, etc. that you have seen in playbooks.</p>
+<pre><code class="yaml">---
+- name: install nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: write our nginx.conf
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+  notify: restart nginx
+
+- name: write our /etc/nginx/sites-available/default
+  template:
+    src: default-site.j2
+    dest: /etc/nginx/sites-available/default
+  notify: restart nginx
+
+- name: deploy website content
+  template:
+    src: index.html.j2
+    dest: /usr/share/nginx/html/index.html
+</code></pre>
+
+<p>Playbooks are still used to execute roles.  The playbook <code>3-role-site.yml</code> is similar to <code>2-1-site.yml</code>.  It still executes three plays (each for common, web, and load balancer) but has a <code>roles:</code> section instead of <code>tasks</code>.</p>
+<pre><code class="yaml">---
+
+# common
+- hosts: all
+  become: yes
+  gather_facts: no
+
+  roles:
+    - common
+
+# web
+- hosts: web
+  become: yes
+
+  roles:
+    - web
+
+# lb
+- hosts: lb
+  become: yes
+
+  roles:
+    - lb
+</code></pre>
+
+<p>Run the playbook to see if any changes are observed.</p>
+<pre><code class="bash">$ ansible-playbook 3-role-site.yml
+</code></pre>
+
+<p>While the responsibilities of different plays are now broken into roles, the end result should be the same.</p>
+<h1 id="reusable-roles">Reusable Roles<a class="headerlink" href="#reusable-roles" title="Permanent link">⌁</a></h1>
+<p>Making roles reusable should be a goal.  Consideration should be taken if the role will be used in Red Hat Linux vs. Ubuntu or even Windows.  Roles provide flexibility to accommodate many types of reuse.  Some interesting examples of more complex roles are:</p>
+<ul>
+<li>Install Docker: <a href="https://github.com/geerlingguy/ansible-role-docker">https://github.com/geerlingguy/ansible-role-docker</a></li>
+<li>Install New Relic Infrastructure: <a href="https://github.com/newrelic/infrastructure-agent-ansible">https://github.com/newrelic/infrastructure-agent-ansible</a></li>
+</ul>
+<p><a href="https://galaxy.ansible.com/">Ansible Galaxy</a> is a site for sharing roles you create or consuming ready made roles.</p>
+<h1 id="just-the-beginning">Just the beginning<a class="headerlink" href="#just-the-beginning" title="Permanent link">⌁</a></h1>
+<p>This lab only scratches the surface of what can be done with Ansible.  However, you should be comfortable with the basic concepts and be able to experiment further.</p>
+<p><a href="../../lab-4/lab-4/">Lab4</a> outlines (but doesn't deep dive into) a rolling update of the content of the web servers.</p>
+<p>More resources can be found in the <a href="../../more/more/">More</a> section of this lab.</p>
+<p>If you are finished, shut down the Vagrant environment like this:</p>
+<pre><code class="bash"># Stop VM's
+$ vagrant halt
+# Stop and remove from disk
+$ vagrant destroy
+</code></pre>
+
+<p>You can do a <code>vagrant up</code> to start up a halted environment or recreate a destroyed environment.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

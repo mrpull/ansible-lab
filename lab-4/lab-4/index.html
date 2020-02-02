@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Lab 4 - Ansible Lab</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../..">Ansible Lab</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../..">Introduction</a>
+                            </li>
+                            <li >
+                                <a href="../../setup/setup/">Setup</a>
+                            </li>
+                            <li >
+                                <a href="../../keys/keys/">Keys</a>
+                            </li>
+                            <li >
+                                <a href="../../lab-1/lab-1/">Lab 1</a>
+                            </li>
+                            <li >
+                                <a href="../../lab-2/lab-2/">Lab 2</a>
+                            </li>
+                            <li >
+                                <a href="../../lab-3/lab-3/">Lab 3</a>
+                            </li>
+                            <li class="active">
+                                <a href="./">Lab 4</a>
+                            </li>
+                            <li >
+                                <a href="../../more/more/">More</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li >
+                                <a rel="next" href="../../lab-3/lab-3/">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../../more/more/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#are-you-ready">Are you ready?</a></li>
+        <li class="main "><a href="#rolling-updates">Rolling Updates</a></li>
+        <li class="main "><a href="#serial-tasks">Serial Tasks</a></li>
+        <li class="main "><a href="#go-forth-and-automate">Go Forth And Automate</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="are-you-ready">Are you ready?<a class="headerlink" href="#are-you-ready" title="Permanent link">⌁</a></h1>
+<ul>
+<li>If you haven't already, scale your Vagrant web farm to 6 virtual machines.</li>
+<li>Make sure all nodes are configured for password-less logins</li>
+<li>Run <code>ansible -m ping all</code> to test ansible connectivity</li>
+<li>Run <code>ansible-playbook 3-role-site.yml</code> to get environment to known good configuration</li>
+<li>Browse to <code>http://localhost:8080</code> and refresh a few times</li>
+</ul>
+<h1 id="rolling-updates">Rolling Updates<a class="headerlink" href="#rolling-updates" title="Permanent link">⌁</a></h1>
+<p>Users (and businesses) expect nearly 100% uptime of websites.  A rolling update, or updating each server one at a time, can provide a zero-downtime deployment.  Ansible can orchestrate these deployments.</p>
+<h1 id="serial-tasks">Serial Tasks<a class="headerlink" href="#serial-tasks" title="Permanent link">⌁</a></h1>
+<p>By default, Ansible runs tasks in parallel across hosts (up to the number in the forks setting in the [default] section of <code>ansible.cfg</code>).  In our rolling update scenario, we only want one web server at a time removed from the pool for updating.  The <code>serial: 1</code> setting of the web play will limit execution to one server at a time until all hosts in the group have been processed.</p>
+<p>Skim through the playbook below to see the tasks.  See comments inline for new concepts.  This playbook isn't appropriate for production, but could be good for future inspiration.</p>
+<p>The shell commands that disable and enable servers in the load balancer pools are ugly, but should do the trick.</p>
+<pre><code class="yaml">---
+
+# common
+- hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+
+  - name: install git
+    apt:
+      name: git
+      state: present
+      update_cache: yes
+
+# web
+- hosts: web
+  become: yes
+  vars:
+    app_version: release-0.01
+  # Limit execution to one node at a time
+  serial: 1
+
+  # Tasks to execute before roles or main tasks section.
+  pre_tasks:
+
+  - name: disable server in haproxy
+    shell: echo &quot;disable server ansible-lab/{{ inventory_hostname }}&quot; | socat stdio /var/lib/haproxy/stats
+    delegate_to: &quot;{{ item }}&quot;
+    with_items: &quot;{{ groups.lb }}&quot;
+
+  tasks:
+
+  - name: install nginx
+    apt:
+      name: nginx
+      state: present
+
+  - name: write our nginx.conf
+    template:
+      src: templates/nginx.conf.j2
+      dest: /etc/nginx/nginx.conf
+    notify: restart nginx
+
+  - name: write our /etc/nginx/sites-available/default
+    template:
+      src: templates/default-site.j2
+      dest: /etc/nginx/sites-available/default
+    notify: restart nginx
+
+  - name: clean existing website content
+    file:
+      path: /usr/share/nginx/html/
+      state: absent
+
+  # The git module will pull requested version from git
+  - name: deploy website content
+    git:
+      repo: https://github.com/mrpull/episode-47.git
+      dest: /usr/share/nginx/html/
+      version: &quot;{{ app_version }}&quot;
+
+  handlers:
+
+  - name: restart nginx
+    service:
+      name: nginx
+      state: restarted
+
+  # Tasks to execute after roles or main tasks section.
+  post_tasks:
+
+  - name: enable server in haproxy
+    shell: echo &quot;enable server ansible-lab/{{ inventory_hostname }}&quot; | socat stdio /var/lib/haproxy/stats
+    delegate_to: &quot;{{ item }}&quot;
+    with_items: &quot;{{ groups.lb }}&quot;
+
+# lb
+- hosts: lb
+  become: yes
+
+  tasks:
+
+  - name: Download and install haproxy and socat
+    apt:
+      name: &quot;{{ item }}&quot;
+      state: present
+    with_items:
+    - haproxy
+    - socat
+
+  - name: Enable HAProxy
+    lineinfile:
+      path: /etc/default/haproxy
+      regexp: &quot;^ENABLED&quot;
+      line: &quot;ENABLED=1&quot;
+    notify: restart haproxy
+
+  - name: Configure the haproxy cnf file with hosts
+    template:
+      src: templates/haproxy.cfg.j2
+      dest: /etc/haproxy/haproxy.cfg
+    notify: restart haproxy
+
+  handlers:
+
+  - name: restart haproxy
+    service:
+      name: haproxy
+      state: restarted
+</code></pre>
+
+<p>Run the playbook while frequently refreshing your browser on <a href="http://localhost:8080">http://localhost:8080</a>.  You may also want to browse to and refresh <a href="http://localhost:8080/haproxy?stats">http://localhost:8080/haproxy?stats</a> to see how the HAProxy changes throughout the playbook.</p>
+<pre><code class="bash">$ ansible-playbook 4-rolling.yml -e &quot;app_version=release-0.01&quot;
+# Run again with a new version
+$ ansible-playbook 4-rolling.yml -e &quot;app_version=release-0.02&quot;
+# Run again with another new version
+$ ansible-playbook 4-rolling.yml -e &quot;app_version=release-0.03&quot;
+</code></pre>
+
+<p>A parallel deployment may be faster, but the rolling update helps avoid user interruption.</p>
+<h1 id="go-forth-and-automate">Go Forth And Automate<a class="headerlink" href="#go-forth-and-automate" title="Permanent link">⌁</a></h1>
+<p>If you are finished, shut down the Vagrant environment like this:</p>
+<pre><code class="bash"># Stop VM's
+$ vagrant halt
+# Stop and remove from disk
+$ vagrant destroy
+</code></pre>
+
+<p>You can do a <code>vagrant up</code> to start up a halted environment or recreate a fresh environment after a destroy.</p>
+<p>More resources can be found in the <a href="../../more/more/">More</a> section of this lab.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
