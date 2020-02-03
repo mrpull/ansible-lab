@@ -135,11 +135,11 @@
 <h1 id="getting-started">Getting Started:<a class="headerlink" href="#getting-started" title="Permanent link">⌁</a></h1>
 <p>Open shell and change to an appropriate directory.  Clone the git repository and cd into it:</p>
 <pre><code class="bash">$ cd ~/Downloads
-$ git clone &lt;PLACEHOLDER&gt;
+$ git clone https://github.com/mrpull/ansible-lab.git
 $ cd ansible-lab
 </code></pre>
 
-<p>Use your favorite text editor, less, or more to inspect the <code>Vagrantfile</code> and <code>bootstrap-mgmt.sh</code> files.  The Vagrantfile (initially) defines four virtual machines.  <code>web1</code> and <code>web2</code> will be configured as web servers.  <code>lb1</code> will be configured as an <a href="http://www.haproxy.org/">HAProxy</a> software load balancer to distribute traffic to each webserver.  A <a href="https://docs.ansible.com/ansible/latest/user_guide/basic_concepts.html#control-node">control node</a> called <code>mgmt</code> will be configured (or bootstrapped) by Vagrant to automatically preinstall Ansible, copy lab examples, and populate its /etc/hosts file.</p>
+<p>Use your favorite text editor or the <code>less</code> command to inspect the <code>Vagrantfile</code> and <code>bootstrap-mgmt.sh</code> files.  The Vagrantfile (initially) defines four virtual machines.  <code>web1</code> and <code>web2</code> will be configured as web servers.  <code>lb1</code> will be configured as an <a href="http://www.haproxy.org/">HAProxy</a> software load balancer to distribute traffic to each webserver.  A <a href="https://docs.ansible.com/ansible/latest/user_guide/basic_concepts.html#control-node">control node</a> called <code>mgmt</code> will be configured (or bootstrapped) by Vagrant to automatically preinstall Ansible, copy lab examples, and populate its /etc/hosts file.</p>
 <p>It it not necessary to understand the Vagrant files in order to do the Ansible lab.</p>
 <h1 id="start-the-virtual-machines">Start the Virtual Machines<a class="headerlink" href="#start-the-virtual-machines" title="Permanent link">⌁</a></h1>
 <p>From the ansible-lab directory, use Vagrant to start the four virtual machines.</p>

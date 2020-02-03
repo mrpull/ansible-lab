@@ -131,8 +131,7 @@
 </code></pre>
 
 <ul>
-<li>The next play uses the <a href="https://docs.ansible.com/ansible/latest/modules/lineinfile_module.html">lineinfile</a>.  <code>lineinfile</code> ensures a particular line is in a file, or replace an existing line using a regular expression.  This is primarily useful when you want to change a single line in a file only.  The <code>template</code> module is preferable in cases where control of the contents of the entire file is important.  The logic is "find a line that starts with ENABLED" and replace it with "ENABLED=1".
-*</li>
+<li>The next play uses the <a href="https://docs.ansible.com/ansible/latest/modules/lineinfile_module.html">lineinfile</a> module.  <code>lineinfile</code> ensures a particular line is in a file, or replace an existing line using a regular expression.  This is primarily useful when you only want to change a single line in a file.  The logic here is "find a line that starts with ENABLED" and replace it with "ENABLED=1".  <em>The <code>template</code> module is preferable in cases where control of the contents of the entire file is important.</em></li>
 </ul>
 <pre><code class="yaml">  - name: enable haproxy
     lineinfile:

@@ -111,7 +111,7 @@
                 <div class="col-md-9" role="main">
 
 <h1 id="authorized_keys">authorized_keys<a class="headerlink" href="#authorized_keys" title="Permanent link">⌁</a></h1>
-<p>In a <a href="../../keys/keys/#ssh-copy-id">previous section</a> you manually copied an SSH key to a managed node.  This does not scale well to hundreds of nodes.  The following section gives an early peek at using an Ansible playbook that uses the <a href="https://docs.ansible.com/ansible/latest/modules/authorized_key_module.html">authorized_keys</a> module to distribute your ssh key to all of the lab nodes.</p>
+<p>In a <a href="../../keys/keys/#ssh-copy-id">previous section</a> you manually copied an SSH key to a managed node to set up password-less logins.  This does not scale well to hundreds of nodes.  The following section gives an early peek at using an Ansible playbook that uses the <a href="https://docs.ansible.com/ansible/latest/modules/authorized_key_module.html">authorized_keys</a> module to distribute your ssh key to all of the lab nodes.</p>
 <h2 id="authorized-keys-playbook">Authorized Keys Playbook<a class="headerlink" href="#authorized-keys-playbook" title="Permanent link">⌁</a></h2>
 <p>Ansible playbooks are <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> files that contain Ansible configuration and instructions.  YAML is relatively easy to read, but sometimes difficult to write.  YAML isn't covered in depth here, but the examples should be easy to reproduce.</p>
 <p><em>It is important to note that spacing is critical in YAML.  If you are getting errors, check the spacing in your playbooks.</em></p>
@@ -130,10 +130,9 @@
       state: present
 </code></pre>
 
-<p>Don't worry about all the details right now.  In summary, there is one task that runs the <a href="https://docs.ansible.com/ansible/latest/modules/authorized_key_module.html">authorized_keys</a> module and ensures that the key is present on all nodes in the inventory.</p>
+<p>Don't worry about all the details right now.  In summary, there is one task that runs the <a href="https://docs.ansible.com/ansible/latest/modules/authorized_key_module.html">authorized_keys</a> module and ensures that the public key that was generated is present on all nodes in the inventory.</p>
 <p>The <code>ansible-playbook</code> command is used to execute playbooks.  <em>Note this is different than the <code>ansible</code> command that is used for ad hoc executions.</em></p>
-<p>Run the playbook 1-1-ssh-addkey.yml as follows to distribute
-the key.</p>
+<p>Run the playbook 1-1-ssh-addkey.yml as follows to distribute the public key.</p>
 <pre><code class="bash">$ ansible-playbook 1-1-ssh-addkey.yml --ask-pass
 </code></pre>
 
@@ -184,7 +183,7 @@ $ ansible -m service -a &quot;name=ntp state=started&quot; --become web1
 <ul>
 <li><code>hosts:</code> - which hosts (or groups) to target</li>
 <li><code>become:</code> - whether or not privilege escalation is needed</li>
-<li><code>gather_facts</code> - whether or not to collect information about the managed node</li>
+<li><code>gather_facts:</code> - whether or not to collect information about the managed node</li>
 </ul>
 <p>Playbooks include a list of tasks.  Tasks should start with a descriptive name followed by the module and its arguments.</p>
 <p>A playbook consisting of three tasks (and a handler) to install and configure NTP is below:</p>
@@ -286,7 +285,7 @@ restrict -4 default kod notrap nomodify nopeer noquery
 
 <p>We used the same playbook and the template module to configure environment specific config files.</p>
 <p><img alt="Screenshot" src="../../img/ntpGrep.png" /></p>
-<p>The <a href="../../lab-2/lab-2/">next lab</a> covers using playbooks to configure a semi-realist scenario of multiple applications on multiple servers.</p></div>
+<p>The <a href="../../lab-2/lab-2/">next lab</a> covers using playbooks to configure a semi-realistic scenario of multiple applications on multiple servers.</p></div>
         </div>
 
         <footer class="col-md-12">
