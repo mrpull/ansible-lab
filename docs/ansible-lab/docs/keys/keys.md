@@ -60,3 +60,5 @@ Notice that `--ask-pass` was not needed.
 
 # Next: Automating Key Distribution
 Using `ssh-copy-id` for every node in a large environment is a lot of manual work just to get an automation tool working.  Fortunately, Ansible has a module to manage ssh keys.  The first section of [Lab 1](../lab-1/lab-1.md) explains how to use Ansible's `authorized_key` module.
+
+[Continue to Lab 1](../lab-1/lab-1.md)

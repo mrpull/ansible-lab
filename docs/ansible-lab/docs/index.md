@@ -1,22 +1,22 @@
 # What Is Ansible?
 
-Ansible Engine is a tool used for automation, provisioning, app deployment, configuration management, and orchestration.  Ansible Engine is open source and is sponsored by Red Hat.  It is the core of a bigger suite of tools that includes Ansible Tower and Red Hat Automation.
+Ansible is a tool used for automation, provisioning, app deployment, configuration management, and orchestration.  It is open source and is sponsored by Red Hat.  It is the core of a bigger suite of tools that includes Ansible Tower and Red Hat Automation.
 
 More information about Ansible is [here](https://www.ansible.com/overview/it-automation).
 
 # No Agents
 
-An Ansible `Control Node`connects via SSH, WinRM, and HTTPS protocols to `Managed Nodes` or `hosts`.  Unlike SaltStack, Puppet, etc., no agent is required.  Ansible is not installed on managed nodes.  Firewall changes are often not required since it uses the same protocols used for interactive maintenance.
+An Ansible `Control Node`connects via SSH, WinRM, and HTTPS protocols to `Managed Nodes` or `hosts`.  Unlike SaltStack, Puppet, etc., no agent is required.  Ansible is not installed on managed nodes.  Linux (and other Unix-like) targets require Python to be installed but that is typically available and Ansible provides a way to automate the install if needed.  Firewall changes are often not required since it uses the same protocols used for interactive maintenance.
 
 # Inventories
 
 Ansible inventories are (by default) an .INI-style file that contains the names of managed nodes and allows grouping into classes such as `webservers`, `database` or environments like `production` and `qa` or by location such as `us-west1` or `us-east1`.  There is also a special group `all`.
 
-Inventories can also pull in hosts from AWS, VMware, or scripts.
+Inventories can also pull in hosts from cloud, VMware, or custom scripts.
 
 # Ad Hoc (and Parallel) Task Execution
 
-Ansible can be used to run one-off commands on one or many managed nodes (e.g. check free disk space with `df -h`) or to execute one of Ansible's hundreds of built in modules (e.g. `ansible -m user -a "user=joedoe state=absent"`)
+Ansible can be used to run one-off commands on one or many managed nodes (e.g. check free disk space with `df -h`) or to execute one of Ansible's hundreds of built in modules (e.g. `ansible -m user -a "user=joedoe state=absent"`).
 
 # Modules
 

@@ -1,5 +1,5 @@
 # Advanced Role Playing
-Ansible [roles](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html) allow you to remove bulky configuration out of the playbook, and into a folder structure. The entire goal of this, is to make things modular, so that you can share and reuse roles, along with not having playbooks that are thousands of lines long.
+Ansible [roles](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html) allow you to remove bulky configuration out of the playbook, and into a folder structure. The entire goal of this is to make things modular, so that you can share and reuse roles, along with not having playbooks that are thousands of lines long.
 
 A role might be created to manage a particular application on a particular kind of server (e.g. the SMTP service on mail servers) or to deploy a common application or setting to all servers.  Role creation may be assigned to developers on different teams (database vs. application serever).  Separation of responsibilities in roles also allows Ansible playbooks to be maintained independently based on skillsets or knowledge domains.
 

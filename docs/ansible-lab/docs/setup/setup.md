@@ -23,10 +23,10 @@ Each of the following should be installed prior to the lab.  Setup of prerequisi
 Open shell and change to an appropriate directory.  Clone the git repository and cd into it:
 ```bash
 $ cd ~/Downloads
-$ git clone <PLACEHOLDER>
+$ git clone https://github.com/mrpull/ansible-lab.git
 $ cd ansible-lab
 ```
-Use your favorite text editor, less, or more to inspect the `Vagrantfile` and `bootstrap-mgmt.sh` files.  The Vagrantfile (initially) defines four virtual machines.  `web1` and `web2` will be configured as web servers.  `lb1` will be configured as an [HAProxy](http://www.haproxy.org/) software load balancer to distribute traffic to each webserver.  A [control node](https://docs.ansible.com/ansible/latest/user_guide/basic_concepts.html#control-node) called `mgmt` will be configured (or bootstrapped) by Vagrant to automatically preinstall Ansible, copy lab examples, and populate its /etc/hosts file.
+Use your favorite text editor or the `less` command to inspect the `Vagrantfile` and `bootstrap-mgmt.sh` files.  The Vagrantfile (initially) defines four virtual machines.  `web1` and `web2` will be configured as web servers.  `lb1` will be configured as an [HAProxy](http://www.haproxy.org/) software load balancer to distribute traffic to each webserver.  A [control node](https://docs.ansible.com/ansible/latest/user_guide/basic_concepts.html#control-node) called `mgmt` will be configured (or bootstrapped) by Vagrant to automatically preinstall Ansible, copy lab examples, and populate its /etc/hosts file.
 
 It it not necessary to understand the Vagrant files in order to do the Ansible lab.
 

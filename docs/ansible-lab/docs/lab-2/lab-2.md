@@ -28,8 +28,7 @@ The final play targets only the load balancer group.  This play employs some new
     - socat
 ```
 
-* The next play uses the [lineinfile](https://docs.ansible.com/ansible/latest/modules/lineinfile_module.html).  `lineinfile` ensures a particular line is in a file, or replace an existing line using a regular expression.  This is primarily useful when you want to change a single line in a file only.  The `template` module is preferable in cases where control of the contents of the entire file is important.  The logic is "find a line that starts with ENABLED" and replace it with "ENABLED=1".
-*
+* The next play uses the [lineinfile](https://docs.ansible.com/ansible/latest/modules/lineinfile_module.html) module.  `lineinfile` ensures a particular line is in a file, or replace an existing line using a regular expression.  This is primarily useful when you only want to change a single line in a file.  The logic here is "find a line that starts with ENABLED" and replace it with "ENABLED=1".  _The `template` module is preferable in cases where control of the contents of the entire file is important._
 
 ```yaml
   - name: enable haproxy

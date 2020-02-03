@@ -14,3 +14,4 @@ The original four part series can be found at:
 * [Get Started With Ansible](https://www.ansible.com/resources/get-started)
 * [How Ansible works](https://www.ansible.com/overview/how-ansible-works)
 * [Ansible Playbook Best Practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html#playbooks-best-practices)
+* [Ansible For Devops book by Jeff Geerling](https://www.ansiblefordevops.com/)
