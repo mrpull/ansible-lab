@@ -114,7 +114,7 @@
 <p>In a <a href="../../keys/keys/#ssh-copy-id">previous section</a> you manually copied an SSH key to a managed node.  This does not scale well to hundreds of nodes.  The following section gives an early peek at using an Ansible playbook that uses the <a href="https://docs.ansible.com/ansible/latest/modules/authorized_key_module.html">authorized_keys</a> module to distribute your ssh key to all of the lab nodes.</p>
 <h2 id="authorized-keys-playbook">Authorized Keys Playbook<a class="headerlink" href="#authorized-keys-playbook" title="Permanent link">⌁</a></h2>
 <p>Ansible playbooks are <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> files that contain Ansible configuration and instructions.  YAML is relatively easy to read, but sometimes difficult to write.  YAML isn't covered in depth here, but the examples should be easy to reproduce.</p>
-<p><em>It is important to note that spacing is critical in YAML.  If you are getting error, check the spacing in your playbooks.</em></p>
+<p><em>It is important to note that spacing is critical in YAML.  If you are getting errors, check the spacing in your playbooks.</em></p>
 <pre><code class="yaml">---
 - hosts: all
   become: yes
