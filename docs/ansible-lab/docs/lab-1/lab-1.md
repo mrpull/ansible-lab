@@ -4,7 +4,7 @@ In a [previous section](../keys/keys.md#ssh-copy-id) you manually copied an SSH 
 ## Authorized Keys Playbook
 Ansible playbooks are [YAML](https://en.wikipedia.org/wiki/YAML) files that contain Ansible configuration and instructions.  YAML is relatively easy to read, but sometimes difficult to write.  YAML isn't covered in depth here, but the examples should be easy to reproduce.
 
-_It is important to note that spacing is critical in YAML.  If you are getting error, check the spacing in your playbooks._
+_It is important to note that spacing is critical in YAML.  If you are getting errors, check the spacing in your playbooks._
 ```yaml
 ---
 - hosts: all
