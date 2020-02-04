@@ -3,3 +3,15 @@ ssh-keygen
 ssh-keyscan
 md
 addkey
+ntp
+resolv.conf
+datacenters
+webservers
+firewalled
+Jinja
+lb
+pkg
+img
+lineinfile
+Devops
+Geerling
