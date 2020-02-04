@@ -106,7 +106,7 @@
 
 <h1 id="advanced-role-playing">Advanced Role Playing<a class="headerlink" href="#advanced-role-playing" title="Permanent link">⌁</a></h1>
 <p>Ansible <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html">roles</a> allow you to remove bulky configuration out of the playbook, and into a folder structure. The entire goal of this is to make things modular, so that you can share and reuse roles, along with not having playbooks that are thousands of lines long.</p>
-<p>A role might be created to manage a particular application on a particular kind of server (e.g. the SMTP service on mail servers) or to deploy a common application or setting to all servers.  Role creation may be assigned to developers on different teams (database vs. application serever).  Separation of responsibilities in roles also allows Ansible playbooks to be maintained independently based on skillsets or knowledge domains.</p>
+<p>A role might be created to manage a particular application on a particular kind of server (e.g. the SMTP service on mail servers) or to deploy a common application or setting to all servers.  Role creation may be assigned to developers on different teams (database vs. application server).  Separation of responsibilities in roles also allows Ansible playbooks to be maintained independently based on skillsets or knowledge domains.</p>
 <p>Role syntax is similar to playbooks, but the pieces are broken into a directory and file structure.</p>
 <p>Roles expect files to be in certain directories. Roles must include at least one of these directories, however it is perfectly fine to exclude any which are not used. When in use, each directory must contain a main.yml file, which contains the relevant content:</p>
 <ul>
