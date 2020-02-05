@@ -20,7 +20,7 @@ Each of the following should be installed prior to the lab.  Setup of prerequisi
         * `varant help`: get Vagrant help
 
 # Getting Started:
-Open shell and change to an appropriate directory.  Clone the git repository and cd into it:
+Open a shell (Git Bash in Windows, Terminal in macOS) and change to an appropriate directory.  Clone the git repository and cd into it:
 ```bash
 $ cd ~/Downloads
 $ git clone https://github.com/mrpull/ansible-lab.git
