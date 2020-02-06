@@ -92,15 +92,16 @@ Behind the scenes, Vagrant has forwarded a port to the HAProxy virtual machine. 
 
 # Experiment
 
-Now try to increase the number of web servers.  Update the Vagrantfile to 6 servers (or 3 or 4 if your computer is low on memory, but not more than 9). Change the 2 in `(1..2).each do |i|` to 6 like the example.  The Vagrantfile syntax isn't related to Ansible and doesn't need to be understood.
+Now try to increase the number of web servers.  Exit from the `mgmt` virtual machine and edit the Vagrantfile on your local machine to 6 servers (or 3 or 4 if your computer is low on memory, but not more than 9). Change the 2 in `(1..2).each do |i|` to 6 like the example.  The Vagrantfile syntax isn't related to Ansible and doesn't need to be understood.
 
 
 ![Screenshot](../img/vagrantChange.png)
 
-Launch the new VM's:
+Launch the new VM's and log into the `mgmt` node:
 
 ```bash
 $ vagrant up
+$ vagrant ssh mgmt
 ```
 
 After the new servers are booted, you'll need to update the inventory to include them (in this case remove the #'s from each relevant line in inventory.ini).  Also you'll need to make sure password-less logins are working.  The [Keys](../keys/keys.md) lab can guide you if you need help.
