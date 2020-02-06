@@ -178,10 +178,11 @@ server {
 <p>Behind the scenes, Vagrant has forwarded a port to the HAProxy virtual machine.  Test it out by browsing to <code>http://localhost:8080</code>.  Refresh the browser several times to see if traffic is being served from both servers.</p>
 <p><img alt="Screenshot" src="../../img/browser.png" /></p>
 <h1 id="experiment">Experiment<a class="headerlink" href="#experiment" title="Permanent link">⌁</a></h1>
-<p>Now try to increase the number of web servers.  Update the Vagrantfile to 6 servers (or 3 or 4 if your computer is low on memory, but not more than 9). Change the 2 in <code>(1..2).each do |i|</code> to 6 like the example.  The Vagrantfile syntax isn't related to Ansible and doesn't need to be understood.</p>
+<p>Now try to increase the number of web servers.  Exit from the <code>mgmt</code> virtual machine and edit the Vagrantfile on your local machine to 6 servers (or 3 or 4 if your computer is low on memory, but not more than 9). Change the 2 in <code>(1..2).each do |i|</code> to 6 like the example.  The Vagrantfile syntax isn't related to Ansible and doesn't need to be understood.</p>
 <p><img alt="Screenshot" src="../../img/vagrantChange.png" /></p>
-<p>Launch the new VM's:</p>
+<p>Launch the new VM's and log into the <code>mgmt</code> node:</p>
 <pre><code class="bash">$ vagrant up
+$ vagrant ssh mgmt
 </code></pre>
 
 <p>After the new servers are booted, you'll need to update the inventory to include them (in this case remove the #'s from each relevant line in inventory.ini).  Also you'll need to make sure password-less logins are working.  The <a href="../../keys/keys/">Keys</a> lab can guide you if you need help.</p>
