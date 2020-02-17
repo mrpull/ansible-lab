@@ -50,7 +50,7 @@ $ vagrant ssh mgmt
 # Hello Ansible!
 If all went well, you should be at a shell prompt inside the mgmt virtual machine that looks like `vagrant@mgmt:~$`.
 
-Once ssh'ed into the `mgmt` node. Verify that Ansible has been automatically been installed.
+Once ssh'ed into the `mgmt` node, verify that Ansible has been automatically been installed.
 
 ```bash
 $ ansible --version
