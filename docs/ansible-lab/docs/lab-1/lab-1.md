@@ -77,7 +77,7 @@ Ubuntu Linux uses the `apt` package manager to install and update packages.  A s
 ```bash
 # DON'T DO THIS
 $ ansible -a "sudo apt-get update" web1
-$ ansible -a "sudo apt-get install ntp" web1
+$ ansible -a "sudo apt-get --yes install ntp" web1
 ```
 
 This is better than logging into each vm and manually running the commands.  You'll probably get several warning messages from Ansible not to use sudo and not to call apt-get directly.  Ansible provides modules to do it a better way.
