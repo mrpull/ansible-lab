@@ -163,7 +163,7 @@ $ ansible -m ping web1
 <p>Ubuntu Linux uses the <code>apt</code> package manager to install and update packages.  A sysadmin could use a couple ad hoc Ansible invocations that uses the <code>command</code> module like this to install the NTP package on <code>web1</code>:</p>
 <pre><code class="bash"># DON'T DO THIS
 $ ansible -a &quot;sudo apt-get update&quot; web1
-$ ansible -a &quot;sudo apt-get install ntp&quot; web1
+$ ansible -a &quot;sudo apt-get --yes install ntp&quot; web1
 </code></pre>
 
 <p>This is better than logging into each vm and manually running the commands.  You'll probably get several warning messages from Ansible not to use sudo and not to call apt-get directly.  Ansible provides modules to do it a better way.</p>
