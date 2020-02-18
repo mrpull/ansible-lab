@@ -34,12 +34,15 @@ defaults
     stats enable
     stats uri /haproxy?stats
 
-backend app
+frontend http
     {% for host in groups['lb'] %}
-       listen ansible-lab {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:80
+       bind {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:80
     {% endfor %}
-    balance     roundrobin
+       default_backend ansible-lab
+
+backend ansible-lab
+    balance roundrobin
     {% for host in groups['web'] %}
-        server {{ host }} {{ hostvars[host]['ansible_eth1']['ipv4']['address'] }} check port 80
+       server {{ host }} {{ hostvars[host]['ansible_eth1']['ipv4']['address'] }} check port 80
     {% endfor %}
 
