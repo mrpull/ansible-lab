@@ -224,12 +224,12 @@ $ ansible -m service -a &quot;name=ntp state=started&quot; --become web1
 
 <p>A couple new concepts are introduced in this playbook.  The <a href="https://docs.ansible.com/ansible/latest/modules/copy_module.html">copy</a> module is used to upload and configure the <code>ntp.conf</code>.  The <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html#handlers-running-operations-on-change">handlers</a> section will kick off tasks that are only necessary when something changed.  In this case, when ntp.conf is changed it does a <code>notify</code> on the restart handler to restart the NTP service.</p>
 <p>Run the playbook as follows:</p>
-<pre><code class="bash">ansible-playbook 1-2-ntp-install.yml
+<pre><code class="bash">$ ansible-playbook 1-2-ntp-install.yml
 </code></pre>
 
 <p>On the very first run it will install the package, write the config, and start (or restart) ntp.
 Then run it again:</p>
-<pre><code class="bash">ansible-playbook 1-2-ntp-install.yml
+<pre><code class="bash">$ ansible-playbook 1-2-ntp-install.yml
 </code></pre>
 
 <p>On subsequent executions, it should not change anything or restart the service.  This is an example of an <code>idempotent</code> playbook.  This is a more desirable pattern than ad hoc commands.</p>
@@ -280,7 +280,7 @@ restrict -4 default kod notrap nomodify nopeer noquery
 </code></pre>
 
 <p>Try the following ad hoc ansible command to use the <code>command</code> module and <code>grep</code> to inspect the server line /etc/ntp.conf on each server in the inventory:</p>
-<pre><code class="bash">ansible -a &quot;grep server /etc/ntp.conf&quot; all
+<pre><code class="bash">$ ansible -a &quot;grep server /etc/ntp.conf&quot; all
 </code></pre>
 
 <p>We used the same playbook and the template module to configure environment specific config files.</p>
