@@ -6,7 +6,7 @@ The lab environment consists of Ubuntu virtual machines powered by VirtualBox an
 
 Each of the following should be installed prior to the lab.  Setup of prerequisites will take around 20 minutes:
 
-* Git and SSH are used for downloading example code and connecting to virtual machines.  Many Linux distributions and macOS provide these tools out of the box.  The [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and [Git for Windows](https://gitforwindows.org/) are both good options to use Git and SSH in Windows.  Git for Windows is recommended.
+* Git and SSH are used for downloading example code and connecting to virtual machines.  Many Linux distributions and macOS provide these tools out of the box.  [Git for Windows](https://gitforwindows.org/) is a good option to use Git and SSH in Windows.
 
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) is an open source virtualization product.  It runs on Windows, Linux, and Mac and supports most common guest operating systems.  **You may need to run the installer as administrator to avoid an installation error.**
 

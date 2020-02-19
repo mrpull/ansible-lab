@@ -1,5 +1,5 @@
 # Credits
-This lab is based on an excellent series of Ansible tutorials by justin@sysadmincasts.com.  Justin's content has not been updated for newer versions of Ansible, but the core concepts remain the same.  Syntax has been updated to newer standards and has been tested with Ansible 2.8.5.
+This lab is based on an excellent series of Ansible tutorials by justin@sysadmincasts.com.  Justin's content has not been updated for newer versions of Ansible, but the core concepts remain the same.  Syntax has been updated to newer standards and has been tested with Ansible 2.9.
 
 The original four part series can be found at:
 

@@ -151,14 +151,14 @@ A couple new concepts are introduced in this playbook.  The [copy](https://docs.
 Run the playbook as follows:
 
 ```bash
-ansible-playbook 1-2-ntp-install.yml
+$ ansible-playbook 1-2-ntp-install.yml
 ```
 
 On the very first run it will install the package, write the config, and start (or restart) ntp.
 Then run it again:
 
 ```bash
-ansible-playbook 1-2-ntp-install.yml
+$ ansible-playbook 1-2-ntp-install.yml
 ```
 
 On subsequent executions, it should not change anything or restart the service.  This is an example of an `idempotent` playbook.  This is a more desirable pattern than ad hoc commands.
@@ -231,7 +231,7 @@ $ ansible-playbook 1-4-ntp-template.yml
 Try the following ad hoc ansible command to use the `command` module and `grep` to inspect the server line /etc/ntp.conf on each server in the inventory:
 
 ```bash
-ansible -a "grep server /etc/ntp.conf" all
+$ ansible -a "grep server /etc/ntp.conf" all
 ```
 
 We used the same playbook and the template module to configure environment specific config files.
