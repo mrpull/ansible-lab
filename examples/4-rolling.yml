@@ -27,6 +27,8 @@
     shell: echo "disable server ansible-lab/{{ inventory_hostname }}" | socat stdio /var/lib/haproxy/stats
     delegate_to: "{{ item }}"
     with_items: "{{ groups.lb }}"
+    tags:
+    - skip_ansible_lint
 
   tasks:
 
@@ -71,6 +73,8 @@
     shell: echo "enable server ansible-lab/{{ inventory_hostname }}" | socat stdio /var/lib/haproxy/stats
     delegate_to: "{{ item }}"
     with_items: "{{ groups.lb }}"
+    tags:
+    - skip_ansible_lint
 
 # lb
 - hosts: lb
