@@ -4,7 +4,6 @@
 
   tasks:
 
-  - name: sleep for 5 seconds
-    shell: /bin/sleep 5
-
-
+  - name: pause for 5 seconds
+    pause:
+      seconds: 5

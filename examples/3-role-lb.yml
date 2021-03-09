@@ -9,7 +9,7 @@
 
 # lb
 - hosts: lb
-  become: yes  
+  become: yes
 
   roles:
     - lb
