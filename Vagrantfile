@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   config.vm.define :mgmt do |mgmt_config|
       mgmt_config.vm.box = "bento/ubuntu-18.04"
       mgmt_config.vm.hostname = "mgmt"
-      mgmt_config.vm.network :private_network, ip: "10.0.15.10"
+      mgmt_config.vm.network :private_network, ip: "192.168.56.10"
       mgmt_config.vm.provider "virtualbox" do |vb|
         vb.memory = "384"
       end
@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
   config.vm.define :lb1 do |lb_config|
       lb_config.vm.box = "bento/ubuntu-18.04"
       lb_config.vm.hostname = "lb1"
-      lb_config.vm.network :private_network, ip: "10.0.15.11"
+      lb_config.vm.network :private_network, ip: "192.168.56.11"
       lb_config.vm.network "forwarded_port", guest: 80, host: 8080
       lb_config.vm.provider "virtualbox" do |vb|
         vb.memory = "384"
@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "web#{i}" do |node|
         node.vm.box = "bento/ubuntu-18.04"
         node.vm.hostname = "web#{i}"
-        node.vm.network :private_network, ip: "10.0.15.2#{i}"
+        node.vm.network :private_network, ip: "192.168.56.2#{i}"
         node.vm.network "forwarded_port", guest: 80, host: "808#{i}"
         node.vm.provider "virtualbox" do |vb|
           vb.memory = "384"
