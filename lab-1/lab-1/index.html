@@ -9,82 +9,69 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
         <title>Lab 1 - Ansible Lab</title>
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/docco.min.css">
 
         <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
-
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-
-                <!-- Collapsed navigation -->
-                <div class="navbar-header">
-                    <!-- Expander button -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="../..">Ansible Lab</a>
-                </div>
+                <a class="navbar-brand" href="../..">Ansible Lab</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <!-- Expanded navigation -->
-                <div class="navbar-collapse collapse">
+                <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li >
-                                <a href="../..">Introduction</a>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Introduction</a>
                             </li>
-                            <li >
-                                <a href="../../setup/setup/">Setup</a>
+                            <li class="navitem">
+                                <a href="../../setup/setup/" class="nav-link">Setup</a>
                             </li>
-                            <li >
-                                <a href="../../keys/keys/">Keys</a>
+                            <li class="navitem">
+                                <a href="../../keys/keys/" class="nav-link">Keys</a>
                             </li>
-                            <li class="active">
-                                <a href="./">Lab 1</a>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Lab 1</a>
                             </li>
-                            <li >
-                                <a href="../../lab-2/lab-2/">Lab 2</a>
+                            <li class="navitem">
+                                <a href="../../lab-2/lab-2/" class="nav-link">Lab 2</a>
                             </li>
-                            <li >
-                                <a href="../../lab-3/lab-3/">Lab 3</a>
+                            <li class="navitem">
+                                <a href="../../lab-3/lab-3/" class="nav-link">Lab 3</a>
                             </li>
-                            <li >
-                                <a href="../../lab-4/lab-4/">Lab 4</a>
+                            <li class="navitem">
+                                <a href="../../lab-4/lab-4/" class="nav-link">Lab 4</a>
                             </li>
-                            <li >
-                                <a href="../../more/more/">More</a>
+                            <li class="navitem">
+                                <a href="../../more/more/" class="nav-link">More</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li >
-                                <a rel="next" href="../../keys/keys/">
+                            <li class="nav-item">
+                                <a rel="prev" href="../../keys/keys/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
-                            <li >
-                                <a rel="prev" href="../../lab-2/lab-2/">
+                            <li class="nav-item">
+                                <a rel="next" href="../../lab-2/lab-2/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -94,28 +81,73 @@
         </div>
 
         <div class="container">
-                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#authorized_keys">authorized_keys</a></li>
-            <li><a href="#authorized-keys-playbook">Authorized Keys Playbook</a></li>
-        <li class="main "><a href="#idempotent">Idempotent</a></li>
-        <li class="main "><a href="#ping">Ping</a></li>
-        <li class="main "><a href="#package-file-service">Package, File, Service</a></li>
-            <li><a href="#warning-dont-do-this-unless-you-must">Warning!  Don't do this (unless you must)</a></li>
-            <li><a href="#better-ad-hoc-pkg-module">Better: Ad Hoc pkg Module</a></li>
-            <li><a href="#more-better-playbooks">More Better: Playbooks</a></li>
-        <li class="main "><a href="#variables-and-templates">Variables and Templates</a></li>
-            <li><a href="#ntp-config-template-example">NTP Config Template Example</a></li>
-    </ul>
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#authorized_keys" class="nav-link">authorized_keys</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#authorized-keys-playbook" class="nav-link">Authorized Keys Playbook</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#idempotent" class="nav-link">Idempotent</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#ping" class="nav-link">Ping</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#package-file-service" class="nav-link">Package, File, Service</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#warning-dont-do-this-unless-you-must" class="nav-link">Warning!  Don't do this (unless you must)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#better-ad-hoc-pkg-module" class="nav-link">Better: Ad Hoc pkg Module</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#more-better-playbooks" class="nav-link">More Better: Playbooks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#variables-and-templates" class="nav-link">Variables and Templates</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#ntp-config-template-example" class="nav-link">NTP Config Template Example</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
 </div></div>
-                <div class="col-md-9" role="main">
+                    <div class="col-md-9" role="main">
 
 <h1 id="authorized_keys">authorized_keys<a class="headerlink" href="#authorized_keys" title="Permanent link">⌁</a></h1>
 <p>In a <a href="../../keys/keys/#ssh-copy-id">previous section</a> you manually copied an SSH key to a managed node to set up password-less logins.  This does not scale well to hundreds of nodes.  The following section gives an early peek at using an Ansible playbook that uses the <a href="https://docs.ansible.com/ansible/latest/modules/authorized_key_module.html">authorized_keys</a> module to distribute your ssh key to all of the lab nodes.</p>
 <h2 id="authorized-keys-playbook">Authorized Keys Playbook<a class="headerlink" href="#authorized-keys-playbook" title="Permanent link">⌁</a></h2>
 <p>Ansible playbooks are <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> files that contain Ansible configuration and instructions.  YAML is relatively easy to read, but sometimes difficult to write.  YAML isn't covered in depth here, but the examples should be easy to reproduce.</p>
 <p><em>It is important to note that spacing is critical in YAML.  If you are getting errors, check the spacing in your playbooks.</em></p>
-<pre><code class="yaml">---
+<pre><code class="language-yaml">---
 - hosts: all
   become: yes
   gather_facts: no
@@ -129,13 +161,11 @@
       key: &quot;{{ lookup('file', '/home/vagrant/.ssh/id_rsa.pub') }}&quot;
       state: present
 </code></pre>
-
 <p>Don't worry about all the details right now.  In summary, there is one task that runs the <a href="https://docs.ansible.com/ansible/latest/modules/authorized_key_module.html">authorized_keys</a> module and ensures that the public key that was generated is present on all nodes in the inventory.</p>
 <p>The <code>ansible-playbook</code> command is used to execute playbooks.  <em>Note this is different than the <code>ansible</code> command that is used for ad hoc executions.</em></p>
 <p>Run the playbook 1-1-ssh-addkey.yml as follows to distribute the public key.</p>
-<pre><code class="bash">$ ansible-playbook 1-1-ssh-addkey.yml --ask-pass
+<pre><code class="language-bash">$ ansible-playbook 1-1-ssh-addkey.yml --ask-pass
 </code></pre>
-
 <p>The output will look something like this:</p>
 <p><img alt="Screenshot" src="../../img/addkey.png" /></p>
 <h1 id="idempotent">Idempotent<a class="headerlink" href="#idempotent" title="Permanent link">⌁</a></h1>
@@ -146,37 +176,33 @@
 <h1 id="ping">Ping<a class="headerlink" href="#ping" title="Permanent link">⌁</a></h1>
 <p>Ansible provides a <a href="https://docs.ansible.com/ansible/latest/modules/ping_module.html">ping</a> module to help verify hosts are setup correctly.</p>
 <p>Run the ping module as follows:</p>
-<pre><code class="bash">$ ansible -m ping all
+<pre><code class="language-bash">$ ansible -m ping all
 </code></pre>
-
 <p>Among the output you should see a <code>"ping": "pong"</code> response for each node in the inventory.  This tool is not like the network tool of the same name.  It does not check ICMP connectivity, but rather verifies ability to login and a usable environment is available on the managed node.</p>
 <p>Experiment with the following ping commands to see if you can guess how the groups in <code>inventory.ini</code> are used:</p>
-<pre><code class="bash">$ ansible -m ping lb
+<pre><code class="language-bash">$ ansible -m ping lb
 $ ansible -m ping web
 $ ansible -m ping all
 $ ansible -m ping web1
 </code></pre>
-
 <h1 id="package-file-service">Package, File, Service<a class="headerlink" href="#package-file-service" title="Permanent link">⌁</a></h1>
 <p>Those familiar with Puppet, Chef, SaltStack, or other similar tools have probably seen the Package, File, Service pattern.  A common scenario would be install HTTPD package, update its config file, and start the service on a new web server.  Ansible provides multiple ways to accomplish these goals.  We'll first look at ad hoc commands, then playbooks, and maybe roles.</p>
 <h2 id="warning-dont-do-this-unless-you-must">Warning!  Don't do this (unless you must)<a class="headerlink" href="#warning-dont-do-this-unless-you-must" title="Permanent link">⌁</a></h2>
 <p>Ubuntu Linux uses the <code>apt</code> package manager to install and update packages.  A sysadmin could use a couple ad hoc Ansible invocations that uses the <code>command</code> module like this to install the NTP package on <code>web1</code>:</p>
-<pre><code class="bash"># DON'T DO THIS
+<pre><code class="language-bash"># DON'T DO THIS
 $ ansible -a &quot;sudo apt-get update&quot; web1
 $ ansible -a &quot;sudo apt-get --yes install ntp&quot; web1
 </code></pre>
-
 <p>This is better than logging into each vm and manually running the commands.  You'll probably get several warning messages from Ansible not to use sudo and not to call apt-get directly.  Ansible provides modules to do it a better way.</p>
 <h2 id="better-ad-hoc-pkg-module">Better: Ad Hoc pkg Module<a class="headerlink" href="#better-ad-hoc-pkg-module" title="Permanent link">⌁</a></h2>
 <p>Ansible provides the <a href="https://docs.ansible.com/ansible/latest/modules/apt_module.html">apt</a> to manage packages on Linux distributions like Debian and Ubuntu.  The <a href="https://docs.ansible.com/ansible/latest/modules/yum_module.html">yum</a> and more generic <a href="https://docs.ansible.com/ansible/latest/modules/package_module.html">package</a> modules are also available for Red Hat and other Linux environments.</p>
 <p>Try this to install and start the NTP service on <code>web1</code></p>
-<pre><code class="bash">$ ansible -m apt -a &quot;package=ntp state=present&quot; --become web1
+<pre><code class="language-bash">$ ansible -m apt -a &quot;package=ntp state=present&quot; --become web1
 # Then try it a second or third time... does it change anything?
 $ ansible -m apt -a &quot;package=ntp state=present&quot; --become web1
 # Start NTP using the service module
 $ ansible -m service -a &quot;name=ntp state=started&quot; --become web1
 </code></pre>
-
 <p>You may have noticed the commands above had a new argument <code>--become</code>.  Without diving into details, it means use escalated privileges to execute the modules.  In this case it is similar to using <code>sudo</code> to use root privileges.  More details <a href="https://docs.ansible.com/ansible/latest/user_guide/become.html">here</a></p>
 <h2 id="more-better-playbooks">More Better: Playbooks<a class="headerlink" href="#more-better-playbooks" title="Permanent link">⌁</a></h2>
 <p>Ansible playbooks are a collection of tasks to be executed in sequence.  Playbooks are written <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> and are easy to read.  At the start of each play you'll usually see:</p>
@@ -187,7 +213,7 @@ $ ansible -m service -a &quot;name=ntp state=started&quot; --become web1
 </ul>
 <p>Playbooks include a list of tasks.  Tasks should start with a descriptive name followed by the module and its arguments.</p>
 <p>A playbook consisting of three tasks (and a handler) to install and configure NTP is below:</p>
-<pre><code class="yaml">---
+<pre><code class="language-yaml">---
 - hosts: all
   become: yes
   gather_facts: no
@@ -221,20 +247,17 @@ $ ansible -m service -a &quot;name=ntp state=started&quot; --become web1
       name: ntp
       state: restarted
 </code></pre>
-
 <p>A couple new concepts are introduced in this playbook.  The <a href="https://docs.ansible.com/ansible/latest/modules/copy_module.html">copy</a> module is used to upload and configure the <code>ntp.conf</code>.  The <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html#handlers-running-operations-on-change">handlers</a> section will kick off tasks that are only necessary when something changed.  In this case, when ntp.conf is changed it does a <code>notify</code> on the restart handler to restart the NTP service.</p>
 <p>Run the playbook as follows:</p>
-<pre><code class="bash">$ ansible-playbook 1-2-ntp-install.yml
+<pre><code class="language-bash">$ ansible-playbook 1-2-ntp-install.yml
 </code></pre>
-
 <p>On the very first run it will install the package, write the config, and start (or restart) ntp.
 Then run it again:</p>
-<pre><code class="bash">$ ansible-playbook 1-2-ntp-install.yml
+<pre><code class="language-bash">$ ansible-playbook 1-2-ntp-install.yml
 </code></pre>
-
 <p>On subsequent executions, it should not change anything or restart the service.  This is an example of an <code>idempotent</code> playbook.  This is a more desirable pattern than ad hoc commands.</p>
 <p>Review the following playbook and guess what it will do:</p>
-<pre><code class="yaml">---
+<pre><code class="language-yaml">---
 - hosts: all
   become: yes
   gather_facts: no
@@ -246,12 +269,10 @@ Then run it again:</p>
       name: ntp
       state: absent
 </code></pre>
-
 <p>If you need a hint, review the docs for the <a href="https://docs.ansible.com/ansible/latest/modules/apt_module.html">apt</a> module.</p>
 <p>Now run the playbook above like this:</p>
-<pre><code class="bash">$ ansible-playbook 1-3-ntp-remove.yml
+<pre><code class="language-bash">$ ansible-playbook 1-3-ntp-remove.yml
 </code></pre>
-
 <h1 id="variables-and-templates">Variables and Templates<a class="headerlink" href="#variables-and-templates" title="Permanent link">⌁</a></h1>
 <p>Using playbooks like we have so far makes it easy to perform tasks quickly and repeatably.  Ansible is even more powerful when you begin to use variables and templates.</p>
 <p>With variables and templates, you can use the same playbooks and roles across different environments and substitute specific values on per-environment basis.  For example, you could configure DNS settings in /etc/resolv.conf for servers in production, disaster recovery, and development datacenters with the same playbook, but substitute the appropriate IP addresses of the DNS servers for each location.</p>
@@ -259,33 +280,30 @@ Then run it again:</p>
 <p>A good way to get familiar with variables and templates is to walk through an example.  In this (somewhat contrived) example, we have decided that the NTP service on the web servers need to use a specific time server while the load balancer must use a different one.  This might be the case when the webservers are in a firewalled segment that doesn't permit access to the internet.</p>
 <p>Our example template file for the NTP playbook is in <code>templates/ntp.conf.j2</code>.  The <code>.j2</code> extension indicates it is a <a href="https://en.wikipedia.org/wiki/Jinja_(template_engine)">Jinja 2</a> template.  Jinja is a template engine used by Ansible (and other Python applications).  It is a whole language on its own.  Today we'll only use it for variable substitution.  It may be helpful to think of Ansible templating is like using the mail merge function of an office suite.  It takes values from a database and merges them into a templated file.</p>
 <p>Only one variable is in <code>templates/ntp.conf.j2</code>:</p>
-<pre><code class="bash"># ...lines above
+<pre><code class="language-bash"># ...lines above
 filegen clockstats file clockstats type day enable
 server {{ ntp_server }}
 restrict -4 default kod notrap nomodify nopeer noquery
 # ... lines below
 </code></pre>
-
 <p>This template contains typical <code>ntp.conf</code> values and looks very similar to the file that was used by the <code>copy</code> module in the earlier playbook except the line <code>server {{ ntp_server }}</code>.  The template module will replace the section with double curly braces (or mustaches) with a variable.</p>
 <p>Variables can be defined in several different locations including the inventory, playbooks, or "vars" files.  In our example, we will use the <code>group_vars</code> directory to define a different value of the variable to be used for each inventory group.  The <code>group_vars</code> directory contains a file for each group (and optionally a file for the special <code>all</code> group).  Ansible determines the values for variables in templates before deploying the rendered files to the servers.</p>
 <p>The group_vars directory looks like this:</p>
-<pre><code class="bash">group_vars
+<pre><code class="language-bash">group_vars
 ├── lb
 └── web
 </code></pre>
-
 <p>The lb and web files each contains a key/value pair for the <code>{{ ntp_server }}</code> variable.  group_vars files can contain multiple variables.  Variable can also be YAML dictionaries.  See the <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html">Using Variables</a> documentation for many more examples.</p>
 <p>Now, run the updated playbook to use the template:</p>
-<pre><code class="bash">$ ansible-playbook 1-4-ntp-template.yml
+<pre><code class="language-bash">$ ansible-playbook 1-4-ntp-template.yml
 </code></pre>
-
 <p>Try the following ad hoc ansible command to use the <code>command</code> module and <code>grep</code> to inspect the server line /etc/ntp.conf on each server in the inventory:</p>
-<pre><code class="bash">$ ansible -a &quot;grep server /etc/ntp.conf&quot; all
+<pre><code class="language-bash">$ ansible -a &quot;grep server /etc/ntp.conf&quot; all
 </code></pre>
-
 <p>We used the same playbook and the template module to configure environment specific config files.</p>
 <p><img alt="Screenshot" src="../../img/ntpGrep.png" /></p>
 <p>The <a href="../../lab-2/lab-2/">next lab</a> covers using playbooks to configure a semi-realistic scenario of multiple applications on multiple servers.</p></div>
+            </div>
         </div>
 
         <footer class="col-md-12">
@@ -299,35 +317,32 @@ restrict -4 default kod notrap nomodify nopeer noquery
         <script src="../../js/base.js" defer></script>
         <script src="../../search/main.js" defer></script>
 
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
             </div>
             <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
-                <form role="form">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
                     </div>
                 </form>
-                <div id="mkdocs-search-results"></div>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
             </div>
             <div class="modal-footer">
             </div>
         </div>
     </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
             </div>
             <div class="modal-body">
               <table class="table">

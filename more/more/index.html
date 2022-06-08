@@ -9,82 +9,69 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
         <title>More - Ansible Lab</title>
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/docco.min.css">
 
         <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
-
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-
-                <!-- Collapsed navigation -->
-                <div class="navbar-header">
-                    <!-- Expander button -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="../..">Ansible Lab</a>
-                </div>
+                <a class="navbar-brand" href="../..">Ansible Lab</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <!-- Expanded navigation -->
-                <div class="navbar-collapse collapse">
+                <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li >
-                                <a href="../..">Introduction</a>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Introduction</a>
                             </li>
-                            <li >
-                                <a href="../../setup/setup/">Setup</a>
+                            <li class="navitem">
+                                <a href="../../setup/setup/" class="nav-link">Setup</a>
                             </li>
-                            <li >
-                                <a href="../../keys/keys/">Keys</a>
+                            <li class="navitem">
+                                <a href="../../keys/keys/" class="nav-link">Keys</a>
                             </li>
-                            <li >
-                                <a href="../../lab-1/lab-1/">Lab 1</a>
+                            <li class="navitem">
+                                <a href="../../lab-1/lab-1/" class="nav-link">Lab 1</a>
                             </li>
-                            <li >
-                                <a href="../../lab-2/lab-2/">Lab 2</a>
+                            <li class="navitem">
+                                <a href="../../lab-2/lab-2/" class="nav-link">Lab 2</a>
                             </li>
-                            <li >
-                                <a href="../../lab-3/lab-3/">Lab 3</a>
+                            <li class="navitem">
+                                <a href="../../lab-3/lab-3/" class="nav-link">Lab 3</a>
                             </li>
-                            <li >
-                                <a href="../../lab-4/lab-4/">Lab 4</a>
+                            <li class="navitem">
+                                <a href="../../lab-4/lab-4/" class="nav-link">Lab 4</a>
                             </li>
-                            <li class="active">
-                                <a href="./">More</a>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">More</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li >
-                                <a rel="next" href="../../lab-4/lab-4/">
+                            <li class="nav-item">
+                                <a rel="prev" href="../../lab-4/lab-4/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
-                            <li class="disabled">
-                                <a rel="prev" >
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -94,17 +81,35 @@
         </div>
 
         <div class="container">
-                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#credits">Credits</a></li>
-        <li class="main "><a href="#more-resources">More Resources</a></li>
-    </ul>
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#credits" class="nav-link">Credits</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#more-resources" class="nav-link">More Resources</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
 </div></div>
-                <div class="col-md-9" role="main">
+                    <div class="col-md-9" role="main">
 
 <h1 id="credits">Credits<a class="headerlink" href="#credits" title="Permanent link">⌁</a></h1>
 <p>This lab is based on an excellent series of Ansible tutorials by justin@sysadmincasts.com.  Justin's content has not been updated for newer versions of Ansible, but the core concepts remain the same.  Syntax has been updated to newer standards and has been tested with Ansible 2.9.</p>
-<p>The original four part series can be found at:</p>
+<p>The original four part series were found at (links were dead during when last checked):</p>
 <ul>
 <li><a href="https://sysadmincasts.com/episodes/43-19-minutes-with-ansible-part-1-4">https://sysadmincasts.com/episodes/43-19-minutes-with-ansible-part-1-4</a></li>
 <li><a href="https://sysadmincasts.com/episodes/45-learning-ansible-with-vagrant-part-2-4">https://sysadmincasts.com/episodes/45-learning-ansible-with-vagrant-part-2-4</a></li>
@@ -119,6 +124,7 @@
 <li><a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html#playbooks-best-practices">Ansible Playbook Best Practices</a></li>
 <li><a href="https://www.ansiblefordevops.com/">Ansible For Devops book by Jeff Geerling</a></li>
 </ul></div>
+            </div>
         </div>
 
         <footer class="col-md-12">
@@ -132,35 +138,32 @@
         <script src="../../js/base.js" defer></script>
         <script src="../../search/main.js" defer></script>
 
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
             </div>
             <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
-                <form role="form">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
                     </div>
                 </form>
-                <div id="mkdocs-search-results"></div>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
             </div>
             <div class="modal-footer">
             </div>
         </div>
     </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
             </div>
             <div class="modal-body">
               <table class="table">

@@ -9,82 +9,69 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
         <title>Lab 2 - Ansible Lab</title>
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/docco.min.css">
 
         <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
-
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-
-                <!-- Collapsed navigation -->
-                <div class="navbar-header">
-                    <!-- Expander button -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="../..">Ansible Lab</a>
-                </div>
+                <a class="navbar-brand" href="../..">Ansible Lab</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <!-- Expanded navigation -->
-                <div class="navbar-collapse collapse">
+                <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li >
-                                <a href="../..">Introduction</a>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Introduction</a>
                             </li>
-                            <li >
-                                <a href="../../setup/setup/">Setup</a>
+                            <li class="navitem">
+                                <a href="../../setup/setup/" class="nav-link">Setup</a>
                             </li>
-                            <li >
-                                <a href="../../keys/keys/">Keys</a>
+                            <li class="navitem">
+                                <a href="../../keys/keys/" class="nav-link">Keys</a>
                             </li>
-                            <li >
-                                <a href="../../lab-1/lab-1/">Lab 1</a>
+                            <li class="navitem">
+                                <a href="../../lab-1/lab-1/" class="nav-link">Lab 1</a>
                             </li>
-                            <li class="active">
-                                <a href="./">Lab 2</a>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Lab 2</a>
                             </li>
-                            <li >
-                                <a href="../../lab-3/lab-3/">Lab 3</a>
+                            <li class="navitem">
+                                <a href="../../lab-3/lab-3/" class="nav-link">Lab 3</a>
                             </li>
-                            <li >
-                                <a href="../../lab-4/lab-4/">Lab 4</a>
+                            <li class="navitem">
+                                <a href="../../lab-4/lab-4/" class="nav-link">Lab 4</a>
                             </li>
-                            <li >
-                                <a href="../../more/more/">More</a>
+                            <li class="navitem">
+                                <a href="../../more/more/" class="nav-link">More</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li >
-                                <a rel="next" href="../../lab-1/lab-1/">
+                            <li class="nav-item">
+                                <a rel="prev" href="../../lab-1/lab-1/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
-                            <li >
-                                <a rel="prev" href="../../lab-3/lab-3/">
+                            <li class="nav-item">
+                                <a rel="next" href="../../lab-3/lab-3/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -94,18 +81,53 @@
         </div>
 
         <div class="container">
-                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#load-balancer-and-2-or-more-web-servers">Load Balancer and 2 (or more) Web Servers</a></li>
-        <li class="main "><a href="#playbook-with-multiple-plays">Playbook with multiple plays</a></li>
-            <li><a href="#common">Common</a></li>
-            <li><a href="#web">Web</a></li>
-            <li><a href="#load-balancer">Load balancer</a></li>
-        <li class="main "><a href="#play-time">Play Time...</a></li>
-        <li class="main "><a href="#experiment">Experiment</a></li>
-    </ul>
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#load-balancer-and-2-or-more-web-servers" class="nav-link">Load Balancer and 2 (or more) Web Servers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#playbook-with-multiple-plays" class="nav-link">Playbook with multiple plays</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#common" class="nav-link">Common</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#web" class="nav-link">Web</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#load-balancer" class="nav-link">Load balancer</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#play-time" class="nav-link">Play Time...</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#experiment" class="nav-link">Experiment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
 </div></div>
-                <div class="col-md-9" role="main">
+                    <div class="col-md-9" role="main">
 
 <h1 id="load-balancer-and-2-or-more-web-servers">Load Balancer and 2 (or more) Web Servers<a class="headerlink" href="#load-balancer-and-2-or-more-web-servers" title="Permanent link">⌁</a></h1>
 <p>The end result of this lab will be an automatically deployed and configured HAProxy load balancer with a group of web servers.
@@ -121,7 +143,7 @@
 <ul>
 <li>The <a href="https://docs.ansible.com/ansible/latest/modules/apt_module.html">apt</a> module now uses <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html#with-items">with_items</a>.  You can think of <code>with_items</code> as looping over the list and running the <code>apt</code> module for each item in the list.  It uses the variable syntax to substitute each package name.</li>
 </ul>
-<pre><code class="yaml">  - name: install haproxy and socat
+<pre><code class="language-yaml">  - name: install haproxy and socat
     apt:
       name: &quot;{{ item }}&quot;
       state: present
@@ -129,22 +151,20 @@
     - haproxy
     - socat
 </code></pre>
-
 <ul>
 <li>The next play uses the <a href="https://docs.ansible.com/ansible/latest/modules/lineinfile_module.html">lineinfile</a> module.  <code>lineinfile</code> ensures a particular line is in a file, or replace an existing line using a regular expression.  This is primarily useful when you only want to change a single line in a file.  The logic here is "find a line that starts with ENABLED" and replace it with "ENABLED=1".  <em>The <code>template</code> module is preferable in cases where control of the contents of the entire file is important.</em></li>
 </ul>
-<pre><code class="yaml">  - name: enable haproxy
+<pre><code class="language-yaml">  - name: enable haproxy
     lineinfile:
       dest: /etc/default/haproxy
       regexp: &quot;^ENABLED&quot;
       line: &quot;ENABLED=1&quot;
     notify: restart haproxy
 </code></pre>
-
 <p>The templates directory contains .j2 (Jinja2) files that are merged before playbook execution.  The templates are mostly stock configuration files plus ansible variables and a little bit of Ansible magic.</p>
 <p>The <code>template/default-site.j2</code> template is used to create the NGINX site configuration.  It begins by inserting a comment that the file is managed by Ansible with the <code>{{ ansible_managed }}</code> variable.  You can customize this message to warn sysadmins that changes made by hand will be overwritten by the next Ansible run.</p>
 <p>The NGINX configuration should include the server's hostname.  Rather than hardcoding the hostname in the template, the Ansible Fact <code>{{ ansible_hostname }}</code> dynamically inserts the hostname on a per-host basis.  This is a good pattern for making playbooks reusable.</p>
-<pre><code class="bash"># {{ ansible_managed }}
+<pre><code class="language-bash"># {{ ansible_managed }}
 server {
 
         listen 80;
@@ -164,15 +184,13 @@ server {
 
 }
 </code></pre>
-
 <p>The other templates have employ similar methods of variable and fact substitution. A more advanced use of templating occurs in the <code>haproxy.cfg.j2</code> template.  The <code>backend app</code> section of the configuration uses Jinja loops and Ansible facts to render the config.  This will later allow adding new hosts to the <code>web</code> group with no need to change the template.</p>
 <p><strong>Jinja loops are an advanced template topic for future learning.  See below for an example of the template and rendered config file side by side.</strong></p>
 <p><a href="../../img/haproxyConfig.png"><img alt="" src="../../img/haproxyConfig.png" /></a></p>
 <h1 id="play-time">Play Time...<a class="headerlink" href="#play-time" title="Permanent link">⌁</a></h1>
 <p>Run the playbook to configure the environment.</p>
-<pre><code class="bash">$ ansible-playbook 2-1-site.yml
+<pre><code class="language-bash">$ ansible-playbook 2-1-site.yml
 </code></pre>
-
 <p>If all goes well, your play recap will indicate success.</p>
 <p>If you run the playbook a second time, the recap should indicate no changes.</p>
 <p>Behind the scenes, Vagrant has forwarded a port to the HAProxy virtual machine.  Test it out by browsing to <code>http://localhost:8080</code>.  Refresh the browser several times to see if traffic is being served from both servers.</p>
@@ -181,10 +199,9 @@ server {
 <p>Now try to increase the number of web servers.  Exit from the <code>mgmt</code> virtual machine and edit the Vagrantfile on your local machine to 6 servers (or 3 or 4 if your computer is low on memory, but not more than 9). Change the 2 in <code>(1..2).each do |i|</code> to 6 like the example.  The Vagrantfile syntax isn't related to Ansible and doesn't need to be understood.</p>
 <p><img alt="Screenshot" src="../../img/vagrantChange.png" /></p>
 <p>Launch the new VM's and log into the <code>mgmt</code> node:</p>
-<pre><code class="bash">$ vagrant up
+<pre><code class="language-bash">$ vagrant up
 $ vagrant ssh mgmt
 </code></pre>
-
 <p>After the new servers are booted, you'll need to update the inventory to include them (in this case remove the #'s from each relevant line in inventory.ini).  Also you'll need to make sure password-less logins are working.  The <a href="../../keys/keys/">Keys</a> lab can guide you if you need help.</p>
 <ul>
 <li>
@@ -201,6 +218,7 @@ $ vagrant ssh mgmt
 </li>
 </ul>
 <p><a href="../../lab-3/lab-3/">Lab 3</a> will discuss breaking down larger playbooks into more modular roles.</p></div>
+            </div>
         </div>
 
         <footer class="col-md-12">
@@ -214,35 +232,32 @@ $ vagrant ssh mgmt
         <script src="../../js/base.js" defer></script>
         <script src="../../search/main.js" defer></script>
 
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
             </div>
             <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
-                <form role="form">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
                     </div>
                 </form>
-                <div id="mkdocs-search-results"></div>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
             </div>
             <div class="modal-footer">
             </div>
         </div>
     </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
             </div>
             <div class="modal-body">
               <table class="table">

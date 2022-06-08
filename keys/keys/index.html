@@ -9,82 +9,69 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
         <title>Keys - Ansible Lab</title>
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/docco.min.css">
 
         <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body>
-
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-
-                <!-- Collapsed navigation -->
-                <div class="navbar-header">
-                    <!-- Expander button -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="../..">Ansible Lab</a>
-                </div>
+                <a class="navbar-brand" href="../..">Ansible Lab</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <!-- Expanded navigation -->
-                <div class="navbar-collapse collapse">
+                <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li >
-                                <a href="../..">Introduction</a>
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Introduction</a>
                             </li>
-                            <li >
-                                <a href="../../setup/setup/">Setup</a>
+                            <li class="navitem">
+                                <a href="../../setup/setup/" class="nav-link">Setup</a>
                             </li>
-                            <li class="active">
-                                <a href="./">Keys</a>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Keys</a>
                             </li>
-                            <li >
-                                <a href="../../lab-1/lab-1/">Lab 1</a>
+                            <li class="navitem">
+                                <a href="../../lab-1/lab-1/" class="nav-link">Lab 1</a>
                             </li>
-                            <li >
-                                <a href="../../lab-2/lab-2/">Lab 2</a>
+                            <li class="navitem">
+                                <a href="../../lab-2/lab-2/" class="nav-link">Lab 2</a>
                             </li>
-                            <li >
-                                <a href="../../lab-3/lab-3/">Lab 3</a>
+                            <li class="navitem">
+                                <a href="../../lab-3/lab-3/" class="nav-link">Lab 3</a>
                             </li>
-                            <li >
-                                <a href="../../lab-4/lab-4/">Lab 4</a>
+                            <li class="navitem">
+                                <a href="../../lab-4/lab-4/" class="nav-link">Lab 4</a>
                             </li>
-                            <li >
-                                <a href="../../more/more/">More</a>
+                            <li class="navitem">
+                                <a href="../../more/more/" class="nav-link">More</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li >
-                                <a rel="next" href="../../setup/setup/">
+                            <li class="nav-item">
+                                <a rel="prev" href="../../setup/setup/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
-                            <li >
-                                <a rel="prev" href="../../lab-1/lab-1/">
+                            <li class="nav-item">
+                                <a rel="next" href="../../lab-1/lab-1/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -94,31 +81,65 @@
         </div>
 
         <div class="container">
-                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#ssh-keys">SSH Keys</a></li>
-        <li class="main "><a href="#ssh-keyscan">ssh-keyscan</a></li>
-        <li class="main "><a href="#key-based-authentication">Key based authentication</a></li>
-            <li><a href="#generate-an-ssh-key-pair">Generate an SSH key pair</a></li>
-        <li class="main "><a href="#ssh-copy-id">ssh-copy-id</a></li>
-            <li><a href="#hello-ansible-again">Hello Ansible (Again!)</a></li>
-        <li class="main "><a href="#next-automating-key-distribution">Next: Automating Key Distribution</a></li>
-    </ul>
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#ssh-keys" class="nav-link">SSH Keys</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#ssh-keyscan" class="nav-link">ssh-keyscan</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#key-based-authentication" class="nav-link">Key based authentication</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#generate-an-ssh-key-pair" class="nav-link">Generate an SSH key pair</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#ssh-copy-id" class="nav-link">ssh-copy-id</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#hello-ansible-again" class="nav-link">Hello Ansible (Again!)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#next-automating-key-distribution" class="nav-link">Next: Automating Key Distribution</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
 </div></div>
-                <div class="col-md-9" role="main">
+                    <div class="col-md-9" role="main">
 
 <h1 id="ssh-keys">SSH Keys<a class="headerlink" href="#ssh-keys" title="Permanent link">⌁</a></h1>
 <p>In the previous session, it was necessary to first SSH to the target node, accept its fingerprint, and interactively enter a password before executing the first Ansible command.  This is OK for one or two nodes but would be painful when scaling to tens, hundreds, or thousands of nodes.  SSH provides the ssh-keyscan tool and key based authentication to solve these issues.</p>
 <h1 id="ssh-keyscan">ssh-keyscan<a class="headerlink" href="#ssh-keyscan" title="Permanent link">⌁</a></h1>
 <p><a href="https://man.openbsd.org/ssh-keyscan">ssh-keyscan</a> is a utility for gathering the public SSH host keys of a number of hosts.  It can be used to append entries for each of the lab hosts to the management node's <code>~/.ssh/known_hosts</code> file as follows:</p>
-<pre><code class="bash">$ ssh-keyscan lb1 web1 web2 &gt;&gt; ~/.ssh/known_hosts
+<pre><code class="language-bash">$ ssh-keyscan lb1 web1 web2 &gt;&gt; ~/.ssh/known_hosts
 </code></pre>
-
 <p><code>ssh-keyscan</code> will print a couple lines of output for each node that it scans.  It also adds entries to the known_hosts file.  If you are curious, you can run <code>cat ~/.ssh/known_hosts</code> to see the current contents.</p>
 <p>Now try to execute another ad hoc command to test the host keys for each node in the lab:</p>
-<pre><code class="bash">$ ansible -a &quot;uptime&quot; all --ask-pass
+<pre><code class="language-bash">$ ansible -a &quot;uptime&quot; all --ask-pass
 </code></pre>
-
 <p>You'll see the following:
 <img alt="Screenshot" src="../../img/uptime.png" /></p>
 <p>Ansible connected to each node via SSH without requiring manually accepting each node's host key.  It then ran the uptime command on each node to show load averages.</p>
@@ -126,28 +147,26 @@
 <p>SSH can provide password-less logins by using a public/private key pair.  The details of key based authentication are outside the scope of this tutorial, but the steps below can be followed to setup basic key based auth.</p>
 <h2 id="generate-an-ssh-key-pair">Generate an SSH key pair<a class="headerlink" href="#generate-an-ssh-key-pair" title="Permanent link">⌁</a></h2>
 <p>The <a href="https://man.openbsd.org/ssh-keygen">ssh-keygen</a> command can generate a key pair used for SSH authentication.  Your own computer may already have a key pair, but the lab <code>mgmt</code> node needs one created as follows:</p>
-<pre><code class="bash">$ ssh-keygen
+<pre><code class="language-bash">$ ssh-keygen
 </code></pre>
-
 <p>Accept the default location for the key.  It isn't best practice to have an empty passphrase, but leave it empty for this lab.  After hitting enter a couple times you should see that a key pair is created followed by an ascii art representation of it like this:</p>
 <p><img alt="Screenshot" src="../../img/keyGen.png" /></p>
 <h1 id="ssh-copy-id">ssh-copy-id<a class="headerlink" href="#ssh-copy-id" title="Permanent link">⌁</a></h1>
 <p>You are ready to copy your key to the server.  The <code>ssh-copy-id</code> utility makes this easy.</p>
-<pre><code class="bash">$ ssh-copy-id vagrant@web1
+<pre><code class="language-bash">$ ssh-copy-id vagrant@web1
 </code></pre>
-
 <p>Enter the vagrant user's password (<code>vagrant</code>) when prompted.</p>
 <p>When the key copy is complete it will suggest you try logging in again as follows: <code>ssh 'vagrant@web1'</code>.  This should connect you to a <code>vagrant@web1:~$</code> prompt without having to type in a password.  Use the <code>exit</code> command to return to the <code>mgmt</code> node.</p>
 <p><a href="https://www.ssh.com/ssh/copy-id">This</a> is a nice overview of ssh-copy-id and password-less logins.</p>
 <h2 id="hello-ansible-again">Hello Ansible (Again!)<a class="headerlink" href="#hello-ansible-again" title="Permanent link">⌁</a></h2>
 <p>Now that password-less login is setup on <code>web1</code> it is time to try another "Hello World":</p>
-<pre><code class="bash">$ ansible -a &quot;echo 'Hello Ansible (Again)'&quot; web1
+<pre><code class="language-bash">$ ansible -a &quot;echo 'Hello Ansible (Again)'&quot; web1
 </code></pre>
-
 <p>Notice that <code>--ask-pass</code> was not needed.</p>
 <h1 id="next-automating-key-distribution">Next: Automating Key Distribution<a class="headerlink" href="#next-automating-key-distribution" title="Permanent link">⌁</a></h1>
 <p>Using <code>ssh-copy-id</code> for every node in a large environment is a lot of manual work just to get an automation tool working.  Fortunately, Ansible has a module to manage ssh keys.  The first section of <a href="../../lab-1/lab-1/">Lab 1</a> explains how to use Ansible's <code>authorized_key</code> module.</p>
 <p><a href="../../lab-1/lab-1/">Continue to Lab 1</a></p></div>
+            </div>
         </div>
 
         <footer class="col-md-12">
@@ -161,35 +180,32 @@
         <script src="../../js/base.js" defer></script>
         <script src="../../search/main.js" defer></script>
 
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
             </div>
             <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
-                <form role="form">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
                     </div>
                 </form>
-                <div id="mkdocs-search-results"></div>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
             </div>
             <div class="modal-footer">
             </div>
         </div>
     </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
             </div>
             <div class="modal-body">
               <table class="table">
