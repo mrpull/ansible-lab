@@ -46,9 +46,9 @@
       name: nginx
       enabled: yes
       state: started
-  
-  handlers:
 
+  handlers:
+  
   - name: restart nginx
     service:
       name: nginx
