@@ -1,7 +1,7 @@
 # Credits
 This lab is based on an excellent series of Ansible tutorials by justin@sysadmincasts.com.  Justin's content has not been updated for newer versions of Ansible, but the core concepts remain the same.  Syntax has been updated to newer standards and has been tested with Ansible 2.9.
 
-The original four part series can be found at:
+The original four part series were found at (links were dead during when last checked):
 
 * [https://sysadmincasts.com/episodes/43-19-minutes-with-ansible-part-1-4](https://sysadmincasts.com/episodes/43-19-minutes-with-ansible-part-1-4)
 * [https://sysadmincasts.com/episodes/45-learning-ansible-with-vagrant-part-2-4](https://sysadmincasts.com/episodes/45-learning-ansible-with-vagrant-part-2-4)
