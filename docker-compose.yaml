@@ -1,0 +1,110 @@
+version: '3.8' # if no version is specificed then v1 is assumed. Recommend v2 minimum
+
+services:
+  mgmt:
+    hostname: mgmt
+    container_name: mgmt
+    image: spurin/diveintoansible:ansible
+    ports: 
+     - ${MGMT_PORT_SSHD}:22
+     - ${MGMT_PORT_TTYD}:7681
+    privileged: true
+    volumes:
+     - ${CONFIG}:/config
+     - ${ANSIBLE_HOME}/shared:/shared
+     - ${ANSIBLE_HOME}/mgmt/ansible:/home/ansible
+     - ${ANSIBLE_HOME}/mgmt/root:/root
+    networks:
+     - diveinto.io
+
+  web1:
+    hostname: web1
+    container_name: web1
+    image: spurin/diveintoansible:ubuntu
+    ports: 
+     - ${WEB1_PORT_SSHD}:22
+     - ${WEB1_PORT_TTYD}:7681
+    privileged: true
+    volumes:
+     - ${CONFIG}:/config
+     - ${ANSIBLE_HOME}/shared:/shared
+     - ${ANSIBLE_HOME}/web1/ansible:/home/ansible
+     - ${ANSIBLE_HOME}/web1/root:/root
+    networks:
+     - diveinto.io
+
+  web2:
+    hostname: web2
+    container_name: web2
+    image: spurin/diveintoansible:ubuntu
+    ports: 
+     - ${WEB2_PORT_SSHD}:22
+     - ${WEB2_PORT_TTYD}:7681
+    privileged: true
+    volumes:
+     - ${CONFIG}:/config
+     - ${ANSIBLE_HOME}/shared:/shared
+     - ${ANSIBLE_HOME}/web2/ansible:/home/ansible
+     - ${ANSIBLE_HOME}/web2/root:/root
+    networks:
+     - diveinto.io
+
+  web3:
+    hostname: web3
+    container_name: web3
+    image: spurin/diveintoansible:ubuntu
+    ports: 
+     - ${WEB3_PORT_SSHD}:22
+     - ${WEB3_PORT_TTYD}:7681
+    privileged: true
+    volumes:
+     - ${CONFIG}:/config
+     - ${ANSIBLE_HOME}/shared:/shared
+     - ${ANSIBLE_HOME}/web3/ansible:/home/ansible
+     - ${ANSIBLE_HOME}/web3/root:/root
+    networks:
+     - diveinto.io
+
+  web4:
+    hostname: web4
+    container_name: web4
+    image: spurin/diveintoansible:ubuntu
+    ports:
+     - ${WEB4_PORT_SSHD}:22
+     - ${WEB4_PORT_TTYD}:7681
+    privileged: true
+    volumes:
+     - ${CONFIG}:/config
+     - ${ANSIBLE_HOME}/shared:/shared
+     - ${ANSIBLE_HOME}/web4/ansible:/home/ansible
+     - ${ANSIBLE_HOME}/web4/root:/root
+    networks:
+     - diveinto.io
+    
+  lb1:
+    hostname: lb1
+    container_name: lb1
+    image: spurin/diveintoansible:ubuntu
+    ports:
+     - ${LB1_PORT_SSHD}:22
+     - ${LB1_PORT_TTYD}:7681
+     - 8080:80
+    privileged: true
+    volumes:
+     - ${CONFIG}:/config
+     - ${ANSIBLE_HOME}/shared:/shared
+     - ${ANSIBLE_HOME}/web4/ansible:/home/ansible
+     - ${ANSIBLE_HOME}/web4/root:/root
+    networks:
+     - diveinto.io
+
+networks:
+  diveinto.io:
+    name: diveinto.io
+    # Canonical bridge interface name
+    #
+    # The setting below provides a friendly name for the bridge interface
+    # as seen in the likes of the ip command.  Use at your own discretion
+    #
+    #driver_opts:
+    #  com.docker.network.bridge.name: "diveinto.io"
