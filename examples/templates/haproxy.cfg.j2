@@ -43,6 +43,6 @@ frontend http
 backend ansible-lab
     balance roundrobin
     {% for host in groups['web'] %}
-       server {{ host }} {{ hostvars[host]['ansible_eth1']['ipv4']['address'] }} check port 80
+       server {{ host }} {{ hostvars[host]['ansible_eth0']['ipv4']['address'] }} check port 80
     {% endfor %}
 
