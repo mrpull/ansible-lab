@@ -12,7 +12,7 @@
 
   - name: write our templated ntp.conf
     template:
-      src: /root/lab/templates/ntp.conf.j2
+      src: /home/ansible/ansible-lab/templates/ntp.conf.j2
       dest: /etc/ntp.conf
       mode: 0644
       owner: root

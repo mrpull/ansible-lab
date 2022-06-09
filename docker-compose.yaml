@@ -14,7 +14,7 @@ services:
      - ${ANSIBLE_HOME}/shared:/shared
      - ${ANSIBLE_HOME}/mgmt/ansible:/home/ansible
      - ${ANSIBLE_HOME}/mgmt/root:/root
-     - ./examples:/root/lab
+     - ./examples:/home/ansible/ansible-lab
     networks:
      - diveinto.io
 

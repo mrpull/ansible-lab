@@ -13,7 +13,7 @@
 
   - name: write our ntp.conf
     copy:
-      src: /root/lab/files/ntp.conf
+      src: /home/ansible/ansible-lab/files/ntp.conf
       dest: /etc/ntp.conf
       mode: 0644
       owner: root

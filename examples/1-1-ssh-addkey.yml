@@ -2,12 +2,19 @@
 - hosts: all
   become: yes
   gather_facts: no
-  remote_user: root
+  remote_user: ansible
 
   tasks:
 
   - name: install ssh key
     authorized_key:
-      user: root
-      key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+      user: ansible
+      key: "{{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"
       state: present
+  - name: configure passwordless sudo for ansible user
+    lineinfile:
+      dest: /etc/sudoers
+      line: 'ansible ALL=(ALL) NOPASSWD: ALL'
+      state: present
+      validate: 'visudo -cf %s'
+      mode: 0644
